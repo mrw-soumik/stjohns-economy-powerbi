@@ -6,14 +6,22 @@ population, compared with Newfoundland and Labrador and Canada. Every number
 traces back to a Statistics Canada table and vector, and the pipeline that
 prepares the data is tested.
 
-> **View the live report:** link to be added after publishing.
+> **View the live report:** link to be added after publishing (see the
+> [publishing guide](docs/publish-guide.md)).
 >
-> **Screenshots:** to be added.
+> **Web version:** the same four pages as a static site in `docs/`, to be served
+> at https://mrw-soumik.github.io/stjohns-economy-powerbi/ once GitHub Pages is
+> enabled.
 
 Built by Mostafa Rafiur Wasib to put the "Power BI Essential Training"
 certification into practice: Power Query, a star-schema semantic model, DAX
 measures, an accessible report design, and the data engineering and testing
 around them.
+
+![Web version of the report, Overview page, at 1440 pixels wide](docs/screenshots/web-overview-desktop.png)
+
+_Web version of the Power BI report (Overview page). Power BI Desktop screenshots
+will be added once the project has been opened in Desktop._
 
 ## Why this dashboard
 
@@ -102,30 +110,68 @@ Force Survey estimates, and units permitted per 1,000 residents.
 
 ```
 config/                 series catalogue: 61 vectors, indicators, geographies
-src/stjohns_econ/       Python ETL (fetch, build), findings, report spec and generators
+src/stjohns_econ/       Python: ETL (fetch, build), findings, report spec and the generators
 data/raw/statcan/       raw Web Data Service responses (snapshot) and fetch manifest
 data/processed/         star schema as CSV (FactObservation, DimDate, DimGeography, DimIndicator, DimSeries)
-powerbi/                Power Query (queries.pq), DAX (measures.dax), theme.json, model.md
-docs/                   data dictionary, report specification, wireframes, findings, model diagram
+powerbi/project/        Power BI Project: StJohnsEconomy.pbip, TMDL semantic model, PBIR report
+powerbi/                Power Query (queries.pq), DAX (measures.dax), theme.json, model.md, VALIDATION.md
+docs/                   web version (index.html, assets/, data/), data dictionary, report
+                        specification, wireframes, findings, publishing guide, screenshots
+tools/                  offline validators for PBIR JSON and TMDL
 tests/                  data-quality, unit and consistency tests (pytest)
 ```
 
-## How to build the report
+## How to open the report
 
-The Power BI assets are plain text, so the report can be rebuilt in about an
-hour in Power BI Desktop:
+- **Power BI Desktop (Windows):** open `powerbi/project/StJohnsEconomy.pbip`. The
+  model, the 53 measures, the theme and all four pages are already defined; select
+  Refresh and Desktop loads the data from this repository's CSV files on GitHub
+  (anonymous access, privacy level Public). The check query at the end of
+  `powerbi/measures.dax` should then match
+  [powerbi/check-query-expected.csv](powerbi/check-query-expected.csv).
+- **From a Mac, without Desktop:** connect a Microsoft Fabric workspace to this
+  repository with Git integration, or deploy the project with Microsoft's
+  `fabric-cicd` library. The [publishing guide](docs/publish-guide.md) gives the
+  steps, the licence and capacity each route needs, and the "Publish to web"
+  rules.
+- **Web version:** open `docs/index.html` in any browser (no server needed), or
+  use the GitHub Pages address above.
 
-1. **Theme:** View > Themes > Browse for themes > `powerbi/theme.json`.
-2. **Queries:** for each section of `powerbi/queries.pq`, add a blank query, paste
-   the code and name it as shown (they load the CSVs from this repository's raw
-   GitHub URLs; privacy level Public, anonymous access).
-3. **Model:** create the four relationships and settings in
-   [powerbi/model.md](powerbi/model.md) and mark `DimDate` as the date table.
-4. **Measures:** paste `powerbi/measures.dax` into DAX query view, run it, and add
-   the measures to the model; set formats and folders as listed.
-5. **Pages:** build the four pages from [docs/report-spec.md](docs/report-spec.md)
-   and its wireframes; the check query at the end of `measures.dax` should match
-   [powerbi/check-query-expected.csv](powerbi/check-query-expected.csv).
+The project is generated from the files in `powerbi/` and the report
+specification, so the text assets also support building the report by hand:
+apply `theme.json`, paste each `queries.pq` section into a blank query, create the
+relationships in [powerbi/model.md](powerbi/model.md), add the measures from
+`measures.dax` through DAX query view, and lay out the pages from
+[docs/report-spec.md](docs/report-spec.md).
+
+**How it was checked:** every PBIR file validates against Microsoft's published
+schemas (0 errors, 0 warnings), the TMDL model loads in Microsoft's Tabular
+Object Model (0 errors, 0 warnings, stable round trip), and the DAX parses
+without syntax errors. [powerbi/VALIDATION.md](powerbi/VALIDATION.md) lists the
+tools, versions and commands, and what can only be confirmed in Power BI itself.
+
+## Web version
+
+`docs/index.html` is labelled "Web version of the Power BI report" and shows the
+same pages, KPIs and charts from the same data, so the dashboard can be shared
+publicly without a Power BI licence. Its numbers come from
+`docs/assets/js/measures.js`, a mirror of the DAX measures that is tested against
+the same expected results as the DAX check query.
+
+- Every chart has a "Show table" button with the values behind it.
+- Charts can be read with the keyboard (Tab to a chart, then the arrow keys); the
+  values are announced to screen readers.
+- Light and dark themes, each with its own validated colour steps.
+- Checked in Chrome at 1440 and 390 pixels wide, in light and dark modes: no
+  console errors, no horizontal scrolling, and no axe-core violations of the
+  WCAG 2.1 A and AA rules.
+- No third-party requests, cookies or tracking; D3 7.9.0 is included in the site.
+
+| Desktop | Mobile |
+|---|---|
+| ![Housing and population page of the web version at 1440 pixels wide](docs/screenshots/web-housing-desktop.png) | ![Overview page of the web version on a 390 pixel wide phone screen](docs/screenshots/web-overview-mobile.png) |
+
+More screenshots, including dark mode, are in [docs/screenshots](docs/screenshots).
 
 ## How to refresh the data
 
@@ -136,16 +182,18 @@ python -m stjohns_econ fetch      # about 6 polite requests to the Statistics Ca
 python -m stjohns_econ build      # validate and rebuild data/processed/*.csv
 python -m pytest                  # data-quality and consistency tests
 python -m stjohns_econ insights   # recompute the findings above
+python -m stjohns_econ design     # regenerate the web data, wireframes and Power BI project
 ```
 
-(`make refresh` runs the same steps.) Commit the updated CSVs and Power BI picks
-them up on its next refresh, because the queries read from the GitHub raw URLs.
+(`make refresh` runs the same steps.) Commit the updated files: Power BI picks up
+the new CSVs on its next refresh, because the queries read from the GitHub raw
+URLs, and GitHub Pages serves the updated web version.
 Statistics Canada releases the CPI, the Labour Force Survey and building permits
 monthly, so a monthly refresh after the CPI release keeps everything current.
 
 ## Data quality checks
 
-`python -m pytest` runs about 80 tests, including:
+`python -m pytest` runs about 100 tests, including:
 
 - unique keys at every grain and referential integrity between fact and dimensions;
 - no unexpected empty values, and only known Statistics Canada flags;
@@ -157,7 +205,10 @@ monthly, so a monthly refresh after the CPI release keeps everything current.
 - Power Query column types match the CSVs; every DAX column, measure and code
   reference exists; the theme uses the validated palette;
 - the README findings, data dictionary tables and wireframes match the data and
-  the specification.
+  the specification;
+- the Power BI Project is current, validates against Microsoft's PBIR schemas,
+  and its measures, folders and formats match `measures.dax` and `model.md`;
+- the web version's measures give the same results as the DAX reference.
 
 ## Limitations
 
@@ -173,3 +224,7 @@ monthly, so a monthly refresh after the CPI release keeps everything current.
   Statistics Canada for every month.
 - Figures are as published on the snapshot date (October 18, 2026, UTC) and will
   change with Statistics Canada revisions.
+- The Power BI Project was built and validated on a Mac. It passes Microsoft's
+  schemas and loads in Microsoft's model library, but it has not yet been opened
+  in Power BI Desktop; [powerbi/VALIDATION.md](powerbi/VALIDATION.md) lists what
+  to confirm there.
