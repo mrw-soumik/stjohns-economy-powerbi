@@ -1,0 +1,4 @@
+GeographyKey,GeographyCode,GeographyName,ShortName,GeographyLevel,SortOrder,ColourHex,ColourHexDark,MarkerShape
+1,SJ,St. John's (CMA),St. John's,Census metropolitan area,1,#2a78d6,#3987e5,Circle
+2,CA,Canada,Canada,Country,2,#eb6834,#d95926,Square
+3,NL,Newfoundland and Labrador,N.L.,Province,3,#1baf7a,#199e70,Triangle
