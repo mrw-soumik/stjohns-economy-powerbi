@@ -195,17 +195,29 @@ def finding_housing_supply(d: Data) -> Finding:
     }
     v["chg_sj"] = pct(v["units_12m_sj"], v["units_prev_12m_sj"])
     v["chg_ca"] = pct(v["units_12m_ca"], v["units_prev_12m_ca"])
+    # Per-capita rate, as in the DAX measure [Units Permitted per 1,000 Residents]:
+    # the latest July 1 population estimate on or before the latest month.
+    for g in ("SJ", "CA"):
+        pop = d.s("POP", g)
+        pop_date = pop.index[pop.index <= latest].max()
+        v[f"pop_date_{g.lower()}"] = pop_date.date().isoformat()
+        v[f"per_1000_{g.lower()}"] = v[f"units_12m_{g.lower()}"] / pop[pop_date] * 1000
     text = (
         f"Building permits in the St. John's CMA created {v['units_12m_sj']:,.0f} dwelling units in the 12 months to "
         f"{month_label(latest)}, {f1(abs(v['chg_sj']))}% {'more' if v['chg_sj'] >= 0 else 'fewer'} than in the previous "
-        f"12 months (Canada {signed(v['chg_ca'])}). In {last_full}, {v['units_last_full_year']:,.0f} units were "
-        f"permitted, against {v['units_compare_year']:,.0f} in {first_full}, and multiple-unit buildings "
-        f"(doubles, row houses and apartments) accounted for {f1(v['multi_share_last'])}% of them, up from "
-        f"{f1(v['multi_share_compare'])}% in {first_full}."
+        f"12 months (Canada {signed(v['chg_ca'])}). That is {f1(v['per_1000_sj'])} units per 1,000 residents, "
+        f"{'below' if v['per_1000_sj'] < v['per_1000_ca'] else 'above'} Canada's {f1(v['per_1000_ca'])} (using the "
+        f"latest July 1 population estimates: {v['pop_date_sj'][:4]} for St. John's, {v['pop_date_ca'][:4]} for "
+        f"Canada). In {last_full}, {v['units_last_full_year']:,.0f} units were permitted, against "
+        f"{v['units_compare_year']:,.0f} in {first_full}, and multiple-unit buildings (doubles, row houses and "
+        f"apartments) accounted for {f1(v['multi_share_last'])}% of them, up from {f1(v['multi_share_compare'])}% "
+        f"in {first_full}."
     )
-    vectors = [d.vector("BP_UNITS", "SJ"), d.vector("BP_UNITS_MULTI", "SJ"), d.vector("BP_UNITS", "CA")]
+    vectors = [d.vector("BP_UNITS", "SJ"), d.vector("BP_UNITS_MULTI", "SJ"), d.vector("BP_UNITS", "CA"),
+               d.vector("POP", "SJ"), d.vector("POP", "CA")]
+    tables = sorted({d.table("BP_UNITS", "SJ"), d.table("POP", "SJ"), d.table("POP", "CA")})
     return Finding("housing_supply", "Permitted housing supply is rising, led by multi-unit buildings",
-                   text, [d.table("BP_UNITS", "SJ")], vectors, v)
+                   text, tables, vectors, v)
 
 
 def finding_population(d: Data) -> Finding:
