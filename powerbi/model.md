@@ -130,6 +130,9 @@ top of `measures.dax`.
 | 6 Survey precision | YoY Change Is Significant | 0 | 1 if the 12-month change exceeds 1.96 standard errors |
 | 6 Survey precision | YoY Significance Label | Text | Plain-language significance statement |
 | 7 Housing | Multi-unit Share % | 0.0% | Share of permitted dwelling units in multiple-dwelling buildings |
+| 7 Housing | Units Permitted per 1,000 Residents | 0.0 | 12-month dwelling units per 1,000 residents (latest July 1 population on or before the latest permit month) |
+| 7 Housing | Units per 1,000 vs Canada Label | Text | "0.7 below Canada (7.2)" |
+| 7 Housing | Units per 1,000 vs Canada Colour | Text | Hex colour for conditional formatting of that label |
 | 8 Display | Change Direction Icon | Text | ▲, ▼ or ■ for the headline change |
 | 8 Display | YoY Assessment | Text | Favourable, Unfavourable, Neutral or Not significant |
 | 8 Display | YoY Delta Label | Text | Icon, change, comparison period and assessment in words |
@@ -138,6 +141,9 @@ top of `measures.dax`.
 | 8 Display | Gap Assessment | Text | Favourable, Unfavourable or Neutral |
 | 8 Display | Gap vs Canada Label | Text | "1.3 pts above Canada (12-month change)" |
 | 8 Display | Gap Colour | Text | Hex colour for conditional formatting of the gap |
+| 8 Display | Rolling 12-Month Assessment | Text | Favourable, Unfavourable or Neutral for the rolling 12-month change |
+| 8 Display | Rolling 12-Month Delta Label | Text | "▲ +22.2% vs previous 12 months (favourable)" |
+| 8 Display | Rolling 12-Month Delta Colour | Text | Hex colour for conditional formatting of that label |
 | 8 Display | Geography Colour | Text | Fixed colour of the geography in context |
 | 8 Display | Index Chart Title | Text | Dynamic title naming the indicator and base period |
 | 8 Display | Source Note | Text | Statistics Canada Open Licence notice with table numbers and latest period |

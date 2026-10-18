@@ -4,8 +4,10 @@ Commands
   fetch      download the catalogued series from Statistics Canada into data/raw/statcan/
   build      validate the raw snapshot and write the star schema to data/processed/
   insights   compute the headline findings (docs/findings.md and the README block)
-  diagrams   regenerate the SVG model diagram and report wireframes in docs/
-  all        fetch, build, insights and diagrams in order
+  design     regenerate the design outputs from the report specification:
+             SVG wireframes and model diagram, the visual tables in
+             docs/report-spec.md
+  all        fetch, build, insights and design in order
 """
 
 from __future__ import annotations
@@ -19,7 +21,7 @@ from .paths import START_DATE
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m stjohns_econ", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["fetch", "build", "insights", "diagrams", "all"])
+    parser.add_argument("command", choices=["fetch", "build", "insights", "design", "all"])
     parser.add_argument("--start", default=START_DATE, help="first reference period to request (fetch)")
     parser.add_argument("--end", default=None, help="last reference period to request (fetch); default today")
     args = parser.parse_args(argv)
@@ -40,10 +42,10 @@ def main(argv: list[str] | None = None) -> int:
         from .insights import run_insights
         findings = run_insights()
         print(f"insights: {len(findings)} findings written to docs/findings.md and README.md")
-    if args.command in ("diagrams", "all"):
-        from .diagrams import run_diagrams
-        for path in run_diagrams():
-            print(f"diagrams: wrote {path}")
+    if args.command in ("design", "all"):
+        from .design import run_design
+        for path in run_design():
+            print(f"design: wrote {path}")
     return 0
 
 

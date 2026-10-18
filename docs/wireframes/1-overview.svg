@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-labelledby="wf-title wf-desc">
+<title id="wf-title">Wireframe: Overview page</title>
+<desc id="wf-desc">How is the St. John's economy doing right now, compared with Canada? Numbered circles give the keyboard tab order.</desc>
+<rect width="1280" height="720" fill="#f9f9f7"/>
+<text x="24" y="36" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">St. John's economy and housing at a glance</text>
+<text x="24" y="56" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#52514e" text-anchor="start">How is the St. John's economy doing right now, compared with Canada? Latest Statistics Canada data for the St. John's census metropolitan area (CMA).</text>
+<circle cx="1242" cy="26" r="9" fill="#cde2fb"/>
+<text x="1242" y="30" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">1</text>
+<rect x="24" y="72" width="400" height="104" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="38" y="94" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Inflation (CPI all-items), 12-month change</text>
+<text x="38" y="109" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
+<text x="38" y="146" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">+0.0%</text>
+<text x="104" y="146" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[YoY %]</text>
+<text x="38" y="164" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Gap vs Canada Label]</text>
+<circle cx="410" cy="86" r="9" fill="#cde2fb"/>
+<text x="410" y="90" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">2</text>
+<rect x="440" y="72" width="400" height="104" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="454" y="94" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Rent (CPI rented accommodation), 12-month change</text>
+<text x="454" y="109" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
+<text x="454" y="146" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">+0.0%</text>
+<text x="520" y="146" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[YoY %]</text>
+<text x="454" y="164" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Gap vs Canada Label]</text>
+<circle cx="826" cy="86" r="9" fill="#cde2fb"/>
+<text x="826" y="90" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">3</text>
+<rect x="856" y="72" width="400" height="104" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="870" y="94" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Unemployment rate</text>
+<text x="870" y="109" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
+<text x="870" y="146" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">00.0</text>
+<text x="924" y="146" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Latest Value]</text>
+<text x="870" y="164" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [YoY Delta Label]</text>
+<circle cx="1242" cy="86" r="9" fill="#cde2fb"/>
+<text x="1242" y="90" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">4</text>
+<rect x="24" y="192" width="400" height="104" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="38" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Employment (thousands)</text>
+<text x="38" y="229" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
+<text x="38" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">00.0</text>
+<text x="92" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Latest Value]</text>
+<text x="38" y="284" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [YoY Delta Label]</text>
+<circle cx="410" cy="206" r="9" fill="#cde2fb"/>
+<text x="410" y="210" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">5</text>
+<rect x="440" y="192" width="400" height="104" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="454" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Dwelling units permitted, last 12 months</text>
+<text x="454" y="229" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
+<text x="454" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">0,000</text>
+<text x="520" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[12-Month Rolling Total]</text>
+<text x="454" y="284" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Rolling 12-Month Delta Label]</text>
+<circle cx="826" cy="206" r="9" fill="#cde2fb"/>
+<text x="826" y="210" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">6</text>
+<rect x="856" y="192" width="400" height="104" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="870" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Population, July 1</text>
+<text x="870" y="229" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
+<text x="870" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">00.0</text>
+<text x="924" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Latest Value]</text>
+<text x="870" y="284" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [YoY Delta Label]</text>
+<circle cx="1242" cy="206" r="9" fill="#cde2fb"/>
+<text x="1242" y="210" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">7</text>
+<rect x="24" y="312" width="608" height="356" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="38" y="334" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Inflation: 12-month change in the CPI</text>
+<text x="38" y="350" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">All-items, not seasonally adjusted</text>
+<rect x="38" y="367" width="14" height="3" rx="1.5" fill="#2a78d6"/>
+<text x="56" y="374" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
+<rect x="116" y="367" width="14" height="3" rx="1.5" fill="#eb6834"/>
+<text x="134" y="374" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
+<line x1="64" y1="394.0" x2="568" y2="394.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="64" y1="476.0" x2="568" y2="476.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="64" y1="558.0" x2="568" y2="558.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="64" y1="640.0" x2="568" y2="640.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="64" y1="640" x2="568" y2="640" stroke="#c3c2b7" stroke-width="1"/>
+<polyline points="64.0,504.7 76.6,507.0 89.2,509.3 101.8,511.5 114.4,513.5 127.0,515.4 139.6,517.0 152.2,518.4 164.8,519.5 177.4,520.3 190.0,520.7 202.6,520.7 215.2,520.4 227.8,519.7 240.4,518.6 253.0,517.1 265.6,515.3 278.2,513.1 290.8,510.6 303.4,507.7 316.0,504.7 328.6,501.4 341.2,497.9 353.8,494.2 366.4,490.5 379.0,486.7 391.6,482.9 404.2,479.1 416.8,475.4 429.4,471.9 442.0,468.5 454.6,465.4 467.2,462.5 479.8,459.9 492.4,457.6 505.0,455.7 517.6,454.1 530.2,452.9 542.8,452.1 555.4,451.6 568.0,451.6" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="574.0" y="454.5904628432868" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">St. John's</text>
+<polyline points="64.0,564.1 76.6,564.3 89.2,564.2 101.8,563.9 114.4,563.2 127.0,562.3 139.6,561.0 152.2,559.4 164.8,557.6 177.4,555.5 190.0,553.1 202.6,550.6 215.2,547.8 227.8,544.9 240.4,541.8 253.0,538.7 265.6,535.5 278.2,532.3 290.8,529.2 303.4,526.1 316.0,523.1 328.6,520.2 341.2,517.5 353.8,515.0 366.4,512.7 379.0,510.7 391.6,508.9 404.2,507.5 416.8,506.3 429.4,505.4 442.0,504.9 454.6,504.6 467.2,504.7 479.8,505.0 492.4,505.6 505.0,506.5 517.6,507.5 530.2,508.8 542.8,510.2 555.4,511.8 568.0,513.4" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="574.0" y="516.4150419159251" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">Canada</text>
+<circle cx="618" cy="326" r="9" fill="#cde2fb"/>
+<text x="618" y="330" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">10</text>
+<rect x="648" y="312" width="608" height="356" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="662" y="334" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Unemployment rate</text>
+<text x="662" y="350" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">Three-month moving average, seasonally adjusted</text>
+<rect x="662" y="367" width="14" height="3" rx="1.5" fill="#2a78d6"/>
+<text x="680" y="374" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
+<rect x="740" y="367" width="14" height="3" rx="1.5" fill="#eb6834"/>
+<text x="758" y="374" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
+<line x1="688" y1="394.0" x2="1192" y2="394.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="688" y1="476.0" x2="1192" y2="476.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="688" y1="558.0" x2="1192" y2="558.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="688" y1="640.0" x2="1192" y2="640.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="688" y1="640" x2="1192" y2="640" stroke="#c3c2b7" stroke-width="1"/>
+<polyline points="688.0,504.7 700.6,507.0 713.2,509.3 725.8,511.5 738.4,513.5 751.0,515.4 763.6,517.0 776.2,518.4 788.8,519.5 801.4,520.3 814.0,520.7 826.6,520.7 839.2,520.4 851.8,519.7 864.4,518.6 877.0,517.1 889.6,515.3 902.2,513.1 914.8,510.6 927.4,507.7 940.0,504.7 952.6,501.4 965.2,497.9 977.8,494.2 990.4,490.5 1003.0,486.7 1015.6,482.9 1028.2,479.1 1040.8,475.4 1053.4,471.9 1066.0,468.5 1078.6,465.4 1091.2,462.5 1103.8,459.9 1116.4,457.6 1129.0,455.7 1141.6,454.1 1154.2,452.9 1166.8,452.1 1179.4,451.6 1192.0,451.6" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1198.0" y="454.5904628432868" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">St. John's</text>
+<polyline points="688.0,564.1 700.6,564.3 713.2,564.2 725.8,563.9 738.4,563.2 751.0,562.3 763.6,561.0 776.2,559.4 788.8,557.6 801.4,555.5 814.0,553.1 826.6,550.6 839.2,547.8 851.8,544.9 864.4,541.8 877.0,538.7 889.6,535.5 902.2,532.3 914.8,529.2 927.4,526.1 940.0,523.1 952.6,520.2 965.2,517.5 977.8,515.0 990.4,512.7 1003.0,510.7 1015.6,508.9 1028.2,507.5 1040.8,506.3 1053.4,505.4 1066.0,504.9 1078.6,504.6 1091.2,504.7 1103.8,505.0 1116.4,505.6 1129.0,506.5 1141.6,507.5 1154.2,508.8 1166.8,510.2 1179.4,511.8 1192.0,513.4" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1198.0" y="516.4150419159251" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">Canada</text>
+<circle cx="1242" cy="326" r="9" fill="#cde2fb"/>
+<text x="1242" y="330" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">11</text>
+<text x="24" y="690" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Adapted from Statistics Canada, tables 18-10-0004-01, 14-10-0459-01, 34-10-0292-01, 17-10-0005-01 and 17-10-0148-01. This does not constitute an endorsement by Statistics Canada of this product. Independent portfolio project; data as published, not seasonally</text>
+<text x="24" y="703" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">adjusted unless stated.</text>
+</svg>

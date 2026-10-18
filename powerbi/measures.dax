@@ -465,6 +465,91 @@ DEFINE
         RETURN
             DIVIDE ( _multi, _total )
 
+    // [Units Permitted per 1,000 Residents]   Format: 0.0
+    // Dwelling units created by permits in the 12 months to the latest permit
+    // month, per 1,000 residents, using the latest July 1 population estimate
+    // on or before that month. Puts St. John's, the province and Canada on one
+    // scale. Works without an indicator filter: the month is taken from the
+    // building permit series, not from whichever indicator was released last.
+    MEASURE '_Measures'[Units Permitted per 1,000 Residents] =
+        VAR _date =
+            CALCULATE (
+                MAX ( FactObservation[Date] ),
+                REMOVEFILTERS ( DimIndicator ),
+                DimIndicator[IndicatorCode] = "BP_UNITS"
+            )
+        VAR _units =
+            CALCULATE (
+                [12-Month Rolling Total],
+                REMOVEFILTERS ( DimIndicator ),
+                DimIndicator[IndicatorCode] = "BP_UNITS",
+                REMOVEFILTERS ( DimDate ),
+                DimDate[Date] = _date
+            )
+        VAR _populationDate =
+            CALCULATE (
+                MAX ( FactObservation[Date] ),
+                REMOVEFILTERS ( DimIndicator ),
+                DimIndicator[IndicatorCode] = "POP",
+                REMOVEFILTERS ( DimDate ),
+                DimDate[Date] <= _date
+            )
+        VAR _population =
+            CALCULATE (
+                [Value],
+                REMOVEFILTERS ( DimIndicator ),
+                DimIndicator[IndicatorCode] = "POP",
+                REMOVEFILTERS ( DimDate ),
+                DimDate[Date] = _populationDate
+            )
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ) && NOT ISBLANK ( _units ) && NOT ISBLANK ( _population ),
+                DIVIDE ( _units, _population ) * 1000
+            )
+
+    // [Units per 1,000 vs Canada Label]   Format: Text
+    // For example "0.7 below Canada (7.2)".
+    MEASURE '_Measures'[Units per 1,000 vs Canada Label] =
+        VAR _local = [Units Permitted per 1,000 Residents]
+        VAR _canada =
+            CALCULATE (
+                [Units Permitted per 1,000 Residents],
+                REMOVEFILTERS ( DimGeography ),
+                DimGeography[GeographyCode] = "CA"
+            )
+        VAR _gap = ROUND ( _local - _canada, 1 )
+        VAR _reference = " Canada (" & FORMAT ( _canada, "0.0" ) & ")"
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _local ) || ISBLANK ( _canada ), BLANK (),
+                SELECTEDVALUE ( DimGeography[GeographyCode] ) = "CA", BLANK (),
+                _gap > 0, FORMAT ( _gap, "0.0" ) & " above" & _reference,
+                _gap < 0, FORMAT ( -_gap, "0.0" ) & " below" & _reference,
+                "Same as" & _reference
+            )
+
+    // [Units per 1,000 vs Canada Colour]   Format: Text (conditional formatting "Field value")
+    // More permitted units per resident than Canada is treated as favourable.
+    MEASURE '_Measures'[Units per 1,000 vs Canada Colour] =
+        VAR _local = [Units Permitted per 1,000 Residents]
+        VAR _canada =
+            CALCULATE (
+                [Units Permitted per 1,000 Residents],
+                REMOVEFILTERS ( DimGeography ),
+                DimGeography[GeographyCode] = "CA"
+            )
+        VAR _gap = ROUND ( _local - _canada, 1 )
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _local ) || ISBLANK ( _canada ), BLANK (),
+                _gap > 0, "#006300",
+                _gap < 0, "#d03b3b",
+                "#52514e"
+            )
+
     // =========================================================================
     // Display folder: 8 Display (labels, colours, titles)
     // Colours are text tokens that pass WCAG contrast on the light surface;
@@ -585,6 +670,39 @@ DEFINE
     // [Gap Colour]   Format: Text (conditional formatting "Field value")
     MEASURE '_Measures'[Gap Colour] =
         SWITCH ( [Gap Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
+
+    // [Rolling 12-Month Assessment]   Format: Text
+    MEASURE '_Measures'[Rolling 12-Month Assessment] =
+        VAR _raw = [12-Month Rolling Total YoY %]
+        VAR _change = ROUND ( _raw, 3 )
+        VAR _direction = SELECTEDVALUE ( DimIndicator[Direction] )
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _raw ), BLANK (),
+                _change = 0 || _direction = "Neutral", "Neutral",
+                ( _change > 0 && _direction = "Higher is better" )
+                    || ( _change < 0 && _direction = "Lower is better" ), "Favourable",
+                "Unfavourable"
+            )
+
+    // [Rolling 12-Month Delta Label]   Format: Text
+    // For example "▲ +22.2% vs previous 12 months (favourable)".
+    MEASURE '_Measures'[Rolling 12-Month Delta Label] =
+        VAR _raw = [12-Month Rolling Total YoY %]
+        VAR _change = ROUND ( _raw, 3 )
+        VAR _icon =
+            SWITCH ( TRUE (), _change > 0, "▲", _change < 0, "▼", "■" )
+        RETURN
+            IF (
+                NOT ISBLANK ( _raw ),
+                _icon & " " & FORMAT ( _raw, "+0.0%;-0.0%;0.0%" ) & " vs previous 12 months ("
+                    & LOWER ( [Rolling 12-Month Assessment] ) & ")"
+            )
+
+    // [Rolling 12-Month Delta Colour]   Format: Text (conditional formatting "Field value")
+    MEASURE '_Measures'[Rolling 12-Month Delta Colour] =
+        SWITCH ( [Rolling 12-Month Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
 
     // [Geography Colour]   Format: Text (conditional formatting "Field value")
     // Keeps each geography's colour fixed when filters change.
