@@ -1,0 +1,6 @@
+# Versions tested with Python 3.14 on macOS. The last line installs this
+# project in editable mode so that "python -m stjohns_econ" works.
+pandas==3.0.6
+requests==2.34.2
+pytest==9.1.1
+-e .

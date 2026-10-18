@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Editors and OS
+.DS_Store
+.vscode/
+.idea/
+
+# Power BI temporary and cache files (the .pbix/.pbip itself may be committed later)
+*.pbix.bak
+.pbi/localSettings.json
+.pbi/cache.abf
