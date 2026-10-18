@@ -1,0 +1,275 @@
+{
+ "scalar": [
+  {
+   "scalarFactorCode": 0,
+   "scalarFactorDescEn": "units",
+   "scalarFactorDescFr": "unités"
+  },
+  {
+   "scalarFactorCode": 1,
+   "scalarFactorDescEn": "tens",
+   "scalarFactorDescFr": "dizaines"
+  },
+  {
+   "scalarFactorCode": 2,
+   "scalarFactorDescEn": "hundreds",
+   "scalarFactorDescFr": "centaines"
+  },
+  {
+   "scalarFactorCode": 3,
+   "scalarFactorDescEn": "thousands",
+   "scalarFactorDescFr": "milliers"
+  },
+  {
+   "scalarFactorCode": 4,
+   "scalarFactorDescEn": "tens of thousands",
+   "scalarFactorDescFr": "dizaines de milliers"
+  },
+  {
+   "scalarFactorCode": 5,
+   "scalarFactorDescEn": "hundreds of thousands",
+   "scalarFactorDescFr": "centaines de milliers"
+  },
+  {
+   "scalarFactorCode": 6,
+   "scalarFactorDescEn": "millions",
+   "scalarFactorDescFr": "millions"
+  },
+  {
+   "scalarFactorCode": 7,
+   "scalarFactorDescEn": "tens of millions",
+   "scalarFactorDescFr": "dizaines de millions"
+  },
+  {
+   "scalarFactorCode": 8,
+   "scalarFactorDescEn": "hundreds of millions",
+   "scalarFactorDescFr": "centaines de millions"
+  },
+  {
+   "scalarFactorCode": 9,
+   "scalarFactorDescEn": "billions",
+   "scalarFactorDescFr": "milliards"
+  }
+ ],
+ "frequency": [
+  {
+   "frequencyCode": 1,
+   "frequencyDescEn": "Daily",
+   "frequencyDescFr": "Quotidienne"
+  },
+  {
+   "frequencyCode": 11,
+   "frequencyDescEn": "Semi-annual",
+   "frequencyDescFr": "Semestrielle"
+  },
+  {
+   "frequencyCode": 12,
+   "frequencyDescEn": "Annual",
+   "frequencyDescFr": "Annuelle"
+  },
+  {
+   "frequencyCode": 13,
+   "frequencyDescEn": "Every 2 years",
+   "frequencyDescFr": "Aux 2 ans"
+  },
+  {
+   "frequencyCode": 14,
+   "frequencyDescEn": "Every 3 years",
+   "frequencyDescFr": "Aux 3 ans"
+  },
+  {
+   "frequencyCode": 15,
+   "frequencyDescEn": "Every 4 years",
+   "frequencyDescFr": "Aux 4 ans"
+  },
+  {
+   "frequencyCode": 16,
+   "frequencyDescEn": "Every 5 years",
+   "frequencyDescFr": "Aux 5 ans"
+  },
+  {
+   "frequencyCode": 17,
+   "frequencyDescEn": "Every 10 years",
+   "frequencyDescFr": "Aux 10 ans"
+  },
+  {
+   "frequencyCode": 18,
+   "frequencyDescEn": "Occasional",
+   "frequencyDescFr": "Occasionnelle"
+  },
+  {
+   "frequencyCode": 19,
+   "frequencyDescEn": "Occasional Quarterly",
+   "frequencyDescFr": "Occasionnelle trimestrielle"
+  },
+  {
+   "frequencyCode": 2,
+   "frequencyDescEn": "Weekly",
+   "frequencyDescFr": "Hebdomadaire"
+  },
+  {
+   "frequencyCode": 20,
+   "frequencyDescEn": "Occasional Monthly",
+   "frequencyDescFr": "Occasionnelle mensuelle"
+  },
+  {
+   "frequencyCode": 21,
+   "frequencyDescEn": "Occasional Daily",
+   "frequencyDescFr": "Occasionnelle quotidienne"
+  },
+  {
+   "frequencyCode": 4,
+   "frequencyDescEn": "Biweekly",
+   "frequencyDescFr": "Aux 2 semaines"
+  },
+  {
+   "frequencyCode": 6,
+   "frequencyDescEn": "Monthly",
+   "frequencyDescFr": "Mensuelle"
+  },
+  {
+   "frequencyCode": 7,
+   "frequencyDescEn": "Bimonthly",
+   "frequencyDescFr": "Aux 2 mois"
+  },
+  {
+   "frequencyCode": 9,
+   "frequencyDescEn": "Quarterly",
+   "frequencyDescFr": "Trimestrielle"
+  }
+ ],
+ "status": [
+  {
+   "statusCode": "0",
+   "statusRepresentationEn": null,
+   "statusRepresentationFr": null,
+   "statusDescEn": "normal",
+   "statusDescFr": "normal"
+  },
+  {
+   "statusCode": "1",
+   "statusRepresentationEn": "..",
+   "statusRepresentationFr": "..",
+   "statusDescEn": "not available for a specific reference period",
+   "statusDescFr": "indisponible pour une période de référence précise"
+  },
+  {
+   "statusCode": "10",
+   "statusRepresentationEn": "<LOD",
+   "statusRepresentationFr": "<LDD",
+   "statusDescEn": "less than the limit of detection",
+   "statusDescFr": "inférieur à la limite de détection"
+  },
+  {
+   "statusCode": "2",
+   "statusRepresentationEn": "0s",
+   "statusRepresentationFr": "0s",
+   "statusDescEn": "value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded",
+   "statusDescFr": "valeur arrondie à 0 (zéro) là où il y a une distinction importante entre le zéro absolu et la valeur arrondie"
+  },
+  {
+   "statusCode": "3",
+   "statusRepresentationEn": "A",
+   "statusRepresentationFr": "A",
+   "statusDescEn": "data quality: excellent",
+   "statusDescFr": "qualité des données : excellente"
+  },
+  {
+   "statusCode": "4",
+   "statusRepresentationEn": "B",
+   "statusRepresentationFr": "B",
+   "statusDescEn": "data quality: very good",
+   "statusDescFr": "qualité des données : très bonne"
+  },
+  {
+   "statusCode": "5",
+   "statusRepresentationEn": "C",
+   "statusRepresentationFr": "C",
+   "statusDescEn": "data quality: good",
+   "statusDescFr": "qualité des données : bonne"
+  },
+  {
+   "statusCode": "6",
+   "statusRepresentationEn": "D",
+   "statusRepresentationFr": "D",
+   "statusDescEn": "data quality: acceptable",
+   "statusDescFr": "qualité des données : acceptable"
+  },
+  {
+   "statusCode": "7",
+   "statusRepresentationEn": "E",
+   "statusRepresentationFr": "E",
+   "statusDescEn": "use with caution",
+   "statusDescFr": "à utiliser avec prudence"
+  },
+  {
+   "statusCode": "8",
+   "statusRepresentationEn": "F",
+   "statusRepresentationFr": "F",
+   "statusDescEn": "too unreliable to be published",
+   "statusDescFr": "trop peu fiable pour être publié"
+  },
+  {
+   "statusCode": "9",
+   "statusRepresentationEn": "...",
+   "statusRepresentationFr": "...",
+   "statusDescEn": "not applicable",
+   "statusDescFr": "n'ayant pas lieu de figurer"
+  }
+ ],
+ "symbol": [
+  {
+   "symbolCode": "0",
+   "symbolRepresentationEn": null,
+   "symbolRepresentationFr": null,
+   "symbolDescEn": "none",
+   "symbolDescFr": "aucun"
+  },
+  {
+   "symbolCode": "1",
+   "symbolRepresentationEn": "p",
+   "symbolRepresentationFr": "p",
+   "symbolDescEn": "preliminary",
+   "symbolDescFr": "provisoire"
+  },
+  {
+   "symbolCode": "3",
+   "symbolRepresentationEn": "r",
+   "symbolRepresentationFr": "r",
+   "symbolDescEn": "revised",
+   "symbolDescFr": "révisé"
+  }
+ ],
+ "uom": [
+  {
+   "memberUomCode": 17,
+   "memberUomEn": "2002=100",
+   "memberUomFr": "2002=100"
+  },
+  {
+   "memberUomCode": 223,
+   "memberUomEn": "Number",
+   "memberUomFr": "Nombre"
+  },
+  {
+   "memberUomCode": 239,
+   "memberUomEn": "Percent",
+   "memberUomFr": "Pourcent"
+  },
+  {
+   "memberUomCode": 249,
+   "memberUomEn": "Persons",
+   "memberUomFr": "Personnes"
+  },
+  {
+   "memberUomCode": 347,
+   "memberUomEn": "Index, 201612=100",
+   "memberUomFr": "Indice, 201612=100"
+  },
+  {
+   "memberUomCode": 428,
+   "memberUomEn": "Persons in thousands",
+   "memberUomFr": "Personnes en milliers"
+  }
+ ]
+}

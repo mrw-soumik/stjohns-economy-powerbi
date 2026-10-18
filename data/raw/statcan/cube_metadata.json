@@ -1,0 +1,613 @@
+[
+ {
+  "productId": "14100459",
+  "cansimId": null,
+  "cubeTitleEn": "Labour force characteristics by census metropolitan area, three-month moving average, seasonally adjusted",
+  "cubeStartDate": "2011-01-01",
+  "cubeEndDate": "2026-09-01",
+  "releaseTime": "2026-10-09T08:30",
+  "frequencyCode": 6,
+  "surveyCode": [
+   "3701"
+  ],
+  "subjectCode": [
+   "140205"
+  ],
+  "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+  "dimension": [
+   {
+    "dimensionPositionId": 1,
+    "dimensionNameEn": "Geography",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Canada",
+      "classificationCode": "11124",
+      "geoLevel": 0,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 2,
+      "memberNameEn": "Newfoundland and Labrador",
+      "classificationCode": "10",
+      "geoLevel": 2,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 3,
+      "memberNameEn": "St. John's, Newfoundland and Labrador",
+      "classificationCode": "1",
+      "geoLevel": 503,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 2,
+    "dimensionNameEn": "Labour force characteristics",
+    "member": [
+     {
+      "memberId": 3,
+      "memberNameEn": "Employment",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 428,
+      "terminated": 0
+     },
+     {
+      "memberId": 5,
+      "memberNameEn": "Unemployment rate",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 239,
+      "terminated": 0
+     },
+     {
+      "memberId": 6,
+      "memberNameEn": "Participation rate",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 239,
+      "terminated": 0
+     },
+     {
+      "memberId": 7,
+      "memberNameEn": "Employment rate",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 239,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 3,
+    "dimensionNameEn": "Statistics",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Estimate",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 2,
+      "memberNameEn": "Standard error of estimate",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 4,
+      "memberNameEn": "Standard error of year-over-year change",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 4,
+    "dimensionNameEn": "Data type",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Seasonally adjusted",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "17100005",
+  "cansimId": "051-0001",
+  "cubeTitleEn": "Population estimates on July 1, by age and gender",
+  "cubeStartDate": "1971-01-01",
+  "cubeEndDate": "2026-01-01",
+  "releaseTime": "2026-09-23T08:30",
+  "frequencyCode": 12,
+  "surveyCode": [
+   "3604"
+  ],
+  "subjectCode": [
+   "171001"
+  ],
+  "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+  "dimension": [
+   {
+    "dimensionPositionId": 1,
+    "dimensionNameEn": "Geography",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Canada",
+      "classificationCode": "11124",
+      "geoLevel": 0,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 2,
+      "memberNameEn": "Newfoundland and Labrador",
+      "classificationCode": "10",
+      "geoLevel": 2,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 2,
+    "dimensionNameEn": "Gender",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Total - gender",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 3,
+    "dimensionNameEn": "Age group",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "All ages",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 249,
+      "terminated": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "17100148",
+  "cansimId": null,
+  "cubeTitleEn": "Population estimates, July 1, by census metropolitan area and census agglomeration, 2021 boundaries",
+  "cubeStartDate": "2001-01-01",
+  "cubeEndDate": "2025-01-01",
+  "releaseTime": "2026-01-14T08:30",
+  "frequencyCode": 12,
+  "surveyCode": [
+   "3608"
+  ],
+  "subjectCode": [
+   "171004"
+  ],
+  "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+  "dimension": [
+   {
+    "dimensionPositionId": 1,
+    "dimensionNameEn": "Geography",
+    "member": [
+     {
+      "memberId": 4,
+      "memberNameEn": "St. John's (CMA), Newfoundland and Labrador",
+      "classificationCode": "001",
+      "geoLevel": 503,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 2,
+    "dimensionNameEn": "Gender",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Total - gender",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 3,
+    "dimensionNameEn": "Age group",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "All ages",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 249,
+      "terminated": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "18100004",
+  "cansimId": "326-0020",
+  "cubeTitleEn": "Consumer Price Index, monthly, not seasonally adjusted",
+  "cubeStartDate": "1914-01-01",
+  "cubeEndDate": "2026-08-01",
+  "releaseTime": "2026-09-14T08:30",
+  "frequencyCode": 6,
+  "surveyCode": [
+   "2301"
+  ],
+  "subjectCode": [
+   "1802",
+   "451003"
+  ],
+  "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+  "dimension": [
+   {
+    "dimensionPositionId": 1,
+    "dimensionNameEn": "Geography",
+    "member": [
+     {
+      "memberId": 2,
+      "memberNameEn": "Canada",
+      "classificationCode": "11124",
+      "geoLevel": 0,
+      "vintage": 2016,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 3,
+      "memberNameEn": "Newfoundland and Labrador",
+      "classificationCode": "10",
+      "geoLevel": 2,
+      "vintage": 2016,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 4,
+      "memberNameEn": "St. John's, Newfoundland and Labrador",
+      "classificationCode": "001",
+      "geoLevel": 503,
+      "vintage": 2011,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 2,
+    "dimensionNameEn": "Products and product groups",
+    "member": [
+     {
+      "memberId": 2,
+      "memberNameEn": "All-items",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     },
+     {
+      "memberId": 3,
+      "memberNameEn": "Food",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     },
+     {
+      "memberId": 79,
+      "memberNameEn": "Shelter",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     },
+     {
+      "memberId": 80,
+      "memberNameEn": "Rented accommodation",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     },
+     {
+      "memberId": 84,
+      "memberNameEn": "Owned accommodation",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     },
+     {
+      "memberId": 91,
+      "memberNameEn": "Water, fuel and electricity",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     },
+     {
+      "memberId": 288,
+      "memberNameEn": "Energy",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 17,
+      "terminated": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "18100205",
+  "cansimId": "327-0056",
+  "cubeTitleEn": "New housing price index, monthly",
+  "cubeStartDate": "1981-01-01",
+  "cubeEndDate": "2026-08-01",
+  "releaseTime": "2026-09-17T08:30",
+  "frequencyCode": 6,
+  "surveyCode": [
+   "2310"
+  ],
+  "subjectCode": [
+   "4603",
+   "180501"
+  ],
+  "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+  "dimension": [
+   {
+    "dimensionPositionId": 1,
+    "dimensionNameEn": "Geography",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Canada",
+      "classificationCode": "11124",
+      "geoLevel": 0,
+      "vintage": 2016,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 3,
+      "memberNameEn": "Newfoundland and Labrador",
+      "classificationCode": "10",
+      "geoLevel": 2,
+      "vintage": 2016,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 4,
+      "memberNameEn": "St. John's, Newfoundland and Labrador",
+      "classificationCode": "1",
+      "geoLevel": 503,
+      "vintage": 2011,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 2,
+    "dimensionNameEn": "New housing price indexes",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Total (house and land)",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 347,
+      "terminated": 0
+     },
+     {
+      "memberId": 2,
+      "memberNameEn": "House only",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 347,
+      "terminated": 0
+     },
+     {
+      "memberId": 3,
+      "memberNameEn": "Land only",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 347,
+      "terminated": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "34100292",
+  "cansimId": null,
+  "cubeTitleEn": "Building permits, by type of structure and type of work",
+  "cubeStartDate": "2018-01-01",
+  "cubeEndDate": "2026-08-01",
+  "releaseTime": "2026-10-14T08:30",
+  "frequencyCode": 6,
+  "surveyCode": [
+   "2802"
+  ],
+  "subjectCode": [
+   "3409"
+  ],
+  "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+  "dimension": [
+   {
+    "dimensionPositionId": 1,
+    "dimensionNameEn": "Geography",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Canada",
+      "classificationCode": "11124",
+      "geoLevel": 0,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 2,
+      "memberNameEn": "Newfoundland and Labrador",
+      "classificationCode": "10",
+      "geoLevel": 2,
+      "vintage": 2021,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 17,
+      "memberNameEn": "St. John's, Newfoundland and Labrador",
+      "classificationCode": "001",
+      "geoLevel": 503,
+      "vintage": 2011,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 2,
+    "dimensionNameEn": "Type of building",
+    "member": [
+     {
+      "memberId": 4,
+      "memberNameEn": "Total residential",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 7,
+      "memberNameEn": "Single dwelling building total",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     },
+     {
+      "memberId": 15,
+      "memberNameEn": "Multiple dwelling building total",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 3,
+    "dimensionNameEn": "Type of work",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Types of work, total",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 4,
+    "dimensionNameEn": "Variables",
+    "member": [
+     {
+      "memberId": 2,
+      "memberNameEn": "Number of dwelling-units created",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": 223,
+      "terminated": 0
+     }
+    ]
+   },
+   {
+    "dimensionPositionId": 5,
+    "dimensionNameEn": "Seasonal adjustment, value type",
+    "member": [
+     {
+      "memberId": 1,
+      "memberNameEn": "Unadjusted, current",
+      "classificationCode": null,
+      "geoLevel": null,
+      "vintage": null,
+      "memberUomCode": null,
+      "terminated": 0
+     }
+    ]
+   }
+  ]
+ }
+]
