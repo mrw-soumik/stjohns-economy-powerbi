@@ -20,7 +20,7 @@ test:             ## run the data-quality and unit tests
 insights:         ## recompute the headline findings (docs/findings.md and README block)
 	$(PY) -m stjohns_econ insights
 
-design:           ## regenerate wireframes, model diagram and report-spec tables from report_spec.py
+design:           ## regenerate wireframes, model diagram, report-spec tables and web data from report_spec.py
 	$(PY) -m stjohns_econ design
 
-refresh: fetch build test insights   ## full monthly refresh
+refresh: fetch build insights design test   ## full monthly refresh

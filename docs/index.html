@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>St. John's Economy and Housing Dashboard (web version)</title>
+  <meta name="description" content="Web version of a Power BI report on Statistics Canada data for the St. John's census metropolitan area: prices and shelter costs, jobs, housing supply and population, compared with Newfoundland and Labrador and Canada.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%232a78d6'/%3E%3Cpath d='M3 11.5l3-3 3 2 4-5' stroke='white' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the dashboard</a>
+  <div class="wrap">
+    <header class="site-header">
+      <div class="header-row">
+        <div>
+          <h1 class="site-title">St. John's Economy and Housing Dashboard</h1>
+          <span class="web-badge">Web version of the Power BI report</span>
+          <p class="site-intro">Statistics Canada data for the St. John's census metropolitan area (CMA),
+            compared with Newfoundland and Labrador and Canada. Every chart has a "Show table" button
+            with the numbers behind it.</p>
+        </div>
+        <div class="header-tools">
+          <button class="btn" id="theme-toggle" type="button" aria-pressed="false">Dark theme: off</button>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Report pages">
+        <ul></ul>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <noscript>
+        <p>This web version needs JavaScript to draw the charts. The same data is published as CSV files in the
+          <a href="https://github.com/mrw-soumik/stjohns-economy-powerbi/tree/main/data/processed">data/processed folder</a>
+          of the GitHub repository.</p>
+      </noscript>
+    </main>
+
+    <footer class="site-footer">
+      <p>Adapted from Statistics Canada, tables 18-10-0004-01, 14-10-0459-01, 34-10-0292-01, 18-10-0205-01,
+        17-10-0148-01 and 17-10-0005-01, reference periods from January 2016 to the latest period published in
+        each table (data snapshot of <span id="snapshot-date"></span>). This does not constitute an endorsement by
+        Statistics Canada of this product. Data used under the
+        <a href="https://www.statcan.gc.ca/en/terms-conditions/open-licence">Statistics Canada Open Licence</a>.</p>
+      <p>Independent portfolio project by Mostafa Rafiur Wasib. Not affiliated with or endorsed by Statistics Canada
+        or the City of St. John's. Source code, Power BI project files and data dictionary:
+        <a href="https://github.com/mrw-soumik/stjohns-economy-powerbi">github.com/mrw-soumik/stjohns-economy-powerbi</a>.
+        Charts drawn with D3 7.9.0 (ISC licence).</p>
+    </footer>
+  </div>
+
+  <script src="assets/vendor/d3-7.9.0.min.js"></script>
+  <script src="data/dashboard.js"></script>
+  <script src="data/report-spec.js"></script>
+  <script src="assets/js/measures.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@ Commands
   insights   compute the headline findings (docs/findings.md and the README block)
   design     regenerate the design outputs from the report specification:
              SVG wireframes and model diagram, the visual tables in
-             docs/report-spec.md
+             docs/report-spec.md, and the web version's data files
   all        fetch, build, insights and design in order
 """
 
