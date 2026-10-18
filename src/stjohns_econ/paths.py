@@ -7,6 +7,7 @@ CONFIG_DIR = ROOT / "config"
 RAW_DIR = ROOT / "data" / "raw" / "statcan"
 PROCESSED_DIR = ROOT / "data" / "processed"
 DOCS_DIR = ROOT / "docs"
+POWERBI_DIR = ROOT / "powerbi"
 README = ROOT / "README.md"
 
 # First reference period requested from Statistics Canada. Two years before the

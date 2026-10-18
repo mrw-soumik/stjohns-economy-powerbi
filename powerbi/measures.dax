@@ -1,0 +1,637 @@
+// =============================================================================
+// St. John's Economy and Housing Dashboard: DAX measures
+// =============================================================================
+// Home table: _Measures (created by the _Measures query in queries.pq).
+//
+// Power BI Desktop (DAX query view):
+//   1. Load all queries from queries.pq and create the relationships in model.md.
+//   2. Open DAX query view, paste this whole file and run it. The EVALUATE at the
+//      end returns a check table (latest value and changes for every series).
+//   3. Use "Update model: Add new measures" above DEFINE to save the measures.
+//   4. Set each measure's display folder and format string as listed in its
+//      header (Model view > Properties pane). Where the header says
+//      "Format: Dynamic F1/F2/F3", set Format to Dynamic and paste the matching
+//      format string expression below.
+// Power BI service (web modelling): add each measure with "New measure" and
+// paste the expression that follows "=".
+//
+// Dynamic format string expressions
+//   F1  indicator's own format (index, %, thousands, units)
+//         SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+//   F2  signed change in the indicator's unit; rates change in points
+//         VAR _f = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+//         RETURN IF ( SELECTEDVALUE ( DimIndicator[Unit] ) = "Percent",
+//             "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+" & _f & ";-" & _f & ";" & _f )
+//   F3  headline change: points for rates, per cent for everything else
+//         IF ( SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+//             "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+0.0%;-0.0%;0.0%" )
+//
+// Conventions
+//   * Measures return BLANK unless the context holds one indicator and one
+//     geography, so values with different units are never combined.
+//   * Monthly facts are keyed to the first day of the month; annual population
+//     estimates to July 1. Period arithmetic uses EDATE on those dates, so the
+//     measures do not depend on built-in time intelligence.
+//   * "Latest" means the latest period with data inside the current filter
+//     context (for example, a date slicer).
+// =============================================================================
+
+DEFINE
+
+    // =========================================================================
+    // Display folder: 1 Core
+    // =========================================================================
+
+    // [Value]   Format: Dynamic F1
+    // Averages stocks, rates and indexes; sums flows (building permits).
+    MEASURE '_Measures'[Value] =
+        VAR _method = SELECTEDVALUE ( DimIndicator[AggregationMethod] )
+        RETURN
+            IF (
+                HASONEVALUE ( DimGeography[GeographyKey] ),
+                SWITCH (
+                    _method,
+                    "Sum", SUM ( FactObservation[Value] ),
+                    "Average", AVERAGE ( FactObservation[Value] )
+                )
+            )
+
+    // [Latest Date]   Format: mmm yyyy
+    MEASURE '_Measures'[Latest Date] =
+        MAX ( FactObservation[Date] )
+
+    // [Latest Value]   Format: Dynamic F1
+    MEASURE '_Measures'[Latest Value] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ),
+                CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _date )
+            )
+
+    // [Latest Period Label]   Format: Text
+    // "August 2026" for monthly series, "July 1, 2025" for annual population.
+    MEASURE '_Measures'[Latest Period Label] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ),
+                IF (
+                    SELECTEDVALUE ( DimIndicator[Frequency] ) = "Annual",
+                    FORMAT ( _date, "mmmm d, yyyy" ),
+                    FORMAT ( _date, "mmmm yyyy" )
+                )
+            )
+
+    // =========================================================================
+    // Display folder: 2 Change
+    // =========================================================================
+
+    // [Previous Period Date]   Format: mmm yyyy
+    MEASURE '_Measures'[Previous Period Date] =
+        VAR _date = [Latest Date]
+        VAR _months =
+            SWITCH (
+                SELECTEDVALUE ( DimIndicator[Frequency] ),
+                "Monthly", 1,
+                "Quarterly", 3,
+                "Annual", 12
+            )
+        RETURN
+            IF ( NOT ISBLANK ( _date ) && NOT ISBLANK ( _months ), EDATE ( _date, -_months ) )
+
+    // [Previous Period Value]   Format: Dynamic F1
+    MEASURE '_Measures'[Previous Period Value] =
+        VAR _previous = [Previous Period Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _previous ),
+                CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _previous )
+            )
+
+    // [Change vs Previous Period]   Format: Dynamic F2
+    MEASURE '_Measures'[Change vs Previous Period] =
+        VAR _current = [Latest Value]
+        VAR _previous = [Previous Period Value]
+        RETURN
+            IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _previous ), _current - _previous )
+
+    // [% Change vs Previous Period]   Format: +0.0%;-0.0%;0.0%
+    MEASURE '_Measures'[% Change vs Previous Period] =
+        DIVIDE ( [Change vs Previous Period], [Previous Period Value] )
+
+    // [Year Ago Date]   Format: mmm yyyy
+    MEASURE '_Measures'[Year Ago Date] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF ( NOT ISBLANK ( _date ), EDATE ( _date, -12 ) )
+
+    // [Value Year Ago]   Format: Dynamic F1
+    MEASURE '_Measures'[Value Year Ago] =
+        VAR _yearAgo = [Year Ago Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _yearAgo ),
+                CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _yearAgo )
+            )
+
+    // [YoY Change]   Format: Dynamic F2
+    // Change from the same period a year earlier, in the indicator's unit.
+    MEASURE '_Measures'[YoY Change] =
+        VAR _current = [Latest Value]
+        VAR _yearAgo = [Value Year Ago]
+        RETURN
+            IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _yearAgo ), _current - _yearAgo )
+
+    // [YoY %]   Format: +0.0%;-0.0%;0.0%
+    // For the CPI this is the 12-month inflation rate.
+    MEASURE '_Measures'[YoY %] =
+        DIVIDE ( [YoY Change], [Value Year Ago] )
+
+    // [YoY Headline Change]   Format: Dynamic F3
+    // Rates (unemployment, employment, participation) change in percentage
+    // points; everything else changes in per cent.
+    MEASURE '_Measures'[YoY Headline Change] =
+        IF (
+            SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+            [YoY Change],
+            [YoY %]
+        )
+
+    // =========================================================================
+    // Display folder: 3 Rolling 12 months
+    // =========================================================================
+
+    // [12-Month Rolling Average]   Format: Dynamic F1
+    // Average of the 12 monthly values ending at the latest month; blank until
+    // 12 months of data exist.
+    MEASURE '_Measures'[12-Month Rolling Average] =
+        VAR _date = [Latest Date]
+        VAR _isMonthly = SELECTEDVALUE ( DimIndicator[Frequency] ) = "Monthly"
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ) && _isMonthly && HASONEVALUE ( DimGeography[GeographyKey] ),
+                VAR _start = EDATE ( _date, -11 )
+                VAR _months =
+                    CALCULATE (
+                        DISTINCTCOUNT ( FactObservation[Date] ),
+                        REMOVEFILTERS ( DimDate ),
+                        DimDate[Date] >= _start && DimDate[Date] <= _date
+                    )
+                RETURN
+                    IF (
+                        _months = 12,
+                        CALCULATE (
+                            AVERAGE ( FactObservation[Value] ),
+                            REMOVEFILTERS ( DimDate ),
+                            DimDate[Date] >= _start && DimDate[Date] <= _date
+                        )
+                    )
+            )
+
+    // [12-Month Rolling Total]   Format: #,0
+    // Sum of the 12 monthly values ending at the latest month, for flow
+    // indicators (dwelling units created by building permits). Removes
+    // seasonality without seasonal adjustment.
+    MEASURE '_Measures'[12-Month Rolling Total] =
+        VAR _date = [Latest Date]
+        VAR _isFlow = SELECTEDVALUE ( DimIndicator[AggregationMethod] ) = "Sum"
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ) && _isFlow && HASONEVALUE ( DimGeography[GeographyKey] ),
+                VAR _start = EDATE ( _date, -11 )
+                VAR _months =
+                    CALCULATE (
+                        DISTINCTCOUNT ( FactObservation[Date] ),
+                        REMOVEFILTERS ( DimDate ),
+                        DimDate[Date] >= _start && DimDate[Date] <= _date
+                    )
+                RETURN
+                    IF (
+                        _months = 12,
+                        CALCULATE (
+                            SUM ( FactObservation[Value] ),
+                            REMOVEFILTERS ( DimDate ),
+                            DimDate[Date] >= _start && DimDate[Date] <= _date
+                        )
+                    )
+            )
+
+    // [12-Month Rolling Total Year Ago]   Format: #,0
+    MEASURE '_Measures'[12-Month Rolling Total Year Ago] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ),
+                CALCULATE (
+                    [12-Month Rolling Total],
+                    REMOVEFILTERS ( DimDate ),
+                    DimDate[Date] = EDATE ( _date, -12 )
+                )
+            )
+
+    // [12-Month Rolling Total YoY %]   Format: +0.0%;-0.0%;0.0%
+    MEASURE '_Measures'[12-Month Rolling Total YoY %] =
+        VAR _current = [12-Month Rolling Total]
+        VAR _yearAgo = [12-Month Rolling Total Year Ago]
+        RETURN
+            IF (
+                NOT ISBLANK ( _current ) && NOT ISBLANK ( _yearAgo ),
+                DIVIDE ( _current - _yearAgo, _yearAgo )
+            )
+
+    // =========================================================================
+    // Display folder: 4 Index to base period
+    // =========================================================================
+
+    // [Base Date]   Format: mmm yyyy
+    // Month picked in the BasePeriod slicer (January 2018 if none). Annual
+    // series use their reference day in the base year (July 1 for population).
+    MEASURE '_Measures'[Base Date] =
+        VAR _selected = SELECTEDVALUE ( BasePeriod[BaseDate], DATE ( 2018, 1, 1 ) )
+        VAR _referenceDay = SELECTEDVALUE ( DimIndicator[ReferenceDay] )
+        RETURN
+            IF (
+                SELECTEDVALUE ( DimIndicator[Frequency] ) = "Annual" && NOT ISBLANK ( _referenceDay ),
+                DATE (
+                    YEAR ( _selected ),
+                    VALUE ( LEFT ( _referenceDay, 2 ) ),
+                    VALUE ( RIGHT ( _referenceDay, 2 ) )
+                ),
+                _selected
+            )
+
+    // [Base Value]   Format: Dynamic F1
+    MEASURE '_Measures'[Base Value] =
+        VAR _base = [Base Date]
+        RETURN
+            CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _base )
+
+    // [Index (Base = 100)]   Format: 0.0
+    // Rebases any series to 100 in the base period so that St. John's, the
+    // province and Canada share one axis (no dual axes).
+    MEASURE '_Measures'[Index (Base = 100)] =
+        VAR _base = [Base Value]
+        VAR _current = [Latest Value]
+        RETURN
+            IF (
+                NOT ISBLANK ( _base ) && NOT ISBLANK ( _current ),
+                DIVIDE ( _current, _base ) * 100
+            )
+
+    // [Change Since Base %]   Format: +0.0%;-0.0%;0.0%
+    MEASURE '_Measures'[Change Since Base %] =
+        VAR _index = [Index (Base = 100)]
+        RETURN
+            IF ( NOT ISBLANK ( _index ), _index / 100 - 1 )
+
+    // =========================================================================
+    // Display folder: 5 Comparison with Canada
+    // =========================================================================
+
+    // [Canada Value]   Format: Dynamic F1
+    // Canada's value for the same indicator and the same period as the
+    // geography in context.
+    MEASURE '_Measures'[Canada Value] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ),
+                CALCULATE (
+                    [Value],
+                    REMOVEFILTERS ( DimGeography ),
+                    DimGeography[GeographyCode] = "CA",
+                    REMOVEFILTERS ( DimDate ),
+                    DimDate[Date] = _date
+                )
+            )
+
+    // [Gap vs Canada]   Format: Dynamic F2
+    // Level gap in the indicator's unit. Meaningful for rates (unemployment
+    // rate gap in points); for indexes use [YoY Gap vs Canada (pts)] or
+    // [Index Gap vs Canada] instead.
+    MEASURE '_Measures'[Gap vs Canada] =
+        VAR _value = [Latest Value]
+        VAR _canada = [Canada Value]
+        RETURN
+            IF ( NOT ISBLANK ( _value ) && NOT ISBLANK ( _canada ), _value - _canada )
+
+    // [Canada YoY %]   Format: +0.0%;-0.0%;0.0%
+    MEASURE '_Measures'[Canada YoY %] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ),
+                CALCULATE (
+                    [YoY %],
+                    REMOVEFILTERS ( DimGeography ),
+                    DimGeography[GeographyCode] = "CA",
+                    REMOVEFILTERS ( DimDate ),
+                    DimDate[Date] = _date
+                )
+            )
+
+    // [YoY Gap vs Canada (pts)]   Format: +0.0" pts";-0.0" pts";0.0" pts"
+    // Difference between the 12-month change here and in Canada, in
+    // percentage points. For the CPI this is the inflation gap.
+    MEASURE '_Measures'[YoY Gap vs Canada (pts)] =
+        VAR _local = [YoY %]
+        VAR _canada = [Canada YoY %]
+        RETURN
+            IF ( NOT ISBLANK ( _local ) && NOT ISBLANK ( _canada ), ( _local - _canada ) * 100 )
+
+    // [Canada Index (Base = 100)]   Format: 0.0
+    MEASURE '_Measures'[Canada Index (Base = 100)] =
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _date ),
+                CALCULATE (
+                    [Index (Base = 100)],
+                    REMOVEFILTERS ( DimGeography ),
+                    DimGeography[GeographyCode] = "CA",
+                    REMOVEFILTERS ( DimDate ),
+                    DimDate[Date] = _date
+                )
+            )
+
+    // [Index Gap vs Canada]   Format: +0.0;-0.0;0.0
+    // Difference in index points since the base period.
+    MEASURE '_Measures'[Index Gap vs Canada] =
+        VAR _local = [Index (Base = 100)]
+        VAR _canada = [Canada Index (Base = 100)]
+        RETURN
+            IF ( NOT ISBLANK ( _local ) && NOT ISBLANK ( _canada ), _local - _canada )
+
+    // =========================================================================
+    // Display folder: 6 Survey precision (Labour Force Survey)
+    // =========================================================================
+
+    // [Standard Error]   Format: Dynamic F1
+    // Standard error of the estimate, for indicators that publish one.
+    MEASURE '_Measures'[Standard Error] =
+        VAR _code = SELECTEDVALUE ( DimIndicator[StdErrCode] )
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _code ) && NOT ISBLANK ( _date ),
+                CALCULATE (
+                    [Value],
+                    REMOVEFILTERS ( DimIndicator ),
+                    DimIndicator[IndicatorCode] = _code,
+                    REMOVEFILTERS ( DimDate ),
+                    DimDate[Date] = _date
+                )
+            )
+
+    // [Upper 95% Bound]   Format: Dynamic F1
+    // Use with [Lower 95% Bound] as error bars on a line chart.
+    MEASURE '_Measures'[Upper 95% Bound] =
+        VAR _value = [Latest Value]
+        VAR _se = [Standard Error]
+        RETURN
+            IF ( NOT ISBLANK ( _value ) && NOT ISBLANK ( _se ), _value + 1.96 * _se )
+
+    // [Lower 95% Bound]   Format: Dynamic F1
+    MEASURE '_Measures'[Lower 95% Bound] =
+        VAR _value = [Latest Value]
+        VAR _se = [Standard Error]
+        RETURN
+            IF ( NOT ISBLANK ( _value ) && NOT ISBLANK ( _se ), _value - 1.96 * _se )
+
+    // [YoY Standard Error]   Format: Dynamic F1
+    // Standard error of the 12-month change, as published.
+    MEASURE '_Measures'[YoY Standard Error] =
+        VAR _code = SELECTEDVALUE ( DimIndicator[StdErrYoYCode] )
+        VAR _date = [Latest Date]
+        RETURN
+            IF (
+                NOT ISBLANK ( _code ) && NOT ISBLANK ( _date ),
+                CALCULATE (
+                    [Value],
+                    REMOVEFILTERS ( DimIndicator ),
+                    DimIndicator[IndicatorCode] = _code,
+                    REMOVEFILTERS ( DimDate ),
+                    DimDate[Date] = _date
+                )
+            )
+
+    // [YoY Change Is Significant]   Format: 0
+    // 1 when the 12-month change exceeds 1.96 standard errors (95% level),
+    // 0 when it does not, blank when no standard error is published.
+    MEASURE '_Measures'[YoY Change Is Significant] =
+        VAR _change = [YoY Change]
+        VAR _se = [YoY Standard Error]
+        RETURN
+            IF (
+                NOT ISBLANK ( _change ) && NOT ISBLANK ( _se ),
+                IF ( ABS ( _change ) > 1.96 * _se, 1, 0 )
+            )
+
+    // [YoY Significance Label]   Format: Text
+    // Tests ISBLANK first because BLANK() = 0 is TRUE in DAX.
+    MEASURE '_Measures'[YoY Significance Label] =
+        VAR _significant = [YoY Change Is Significant]
+        RETURN
+            IF (
+                NOT ISBLANK ( _significant ),
+                IF (
+                    _significant = 1,
+                    "Statistically significant (95% level)",
+                    "Within sampling error (95% level)"
+                )
+            )
+
+    // =========================================================================
+    // Display folder: 7 Housing
+    // =========================================================================
+
+    // [Multi-unit Share %]   Format: 0.0%
+    // Share of dwelling units created in multiple-dwelling buildings. Works on
+    // any period (month, year, rolling window via the date filter).
+    MEASURE '_Measures'[Multi-unit Share %] =
+        VAR _multi =
+            CALCULATE (
+                [Value],
+                REMOVEFILTERS ( DimIndicator ),
+                DimIndicator[IndicatorCode] = "BP_UNITS_MULTI"
+            )
+        VAR _total =
+            CALCULATE (
+                [Value],
+                REMOVEFILTERS ( DimIndicator ),
+                DimIndicator[IndicatorCode] = "BP_UNITS"
+            )
+        RETURN
+            DIVIDE ( _multi, _total )
+
+    // =========================================================================
+    // Display folder: 8 Display (labels, colours, titles)
+    // Colours are text tokens that pass WCAG contrast on the light surface;
+    // every colour is paired with an icon and a word, never used alone.
+    // =========================================================================
+
+    // [Change Direction Icon]   Format: Text
+    MEASURE '_Measures'[Change Direction Icon] =
+        VAR _change = [YoY Headline Change]
+        VAR _rounded =
+            IF (
+                SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+                ROUND ( _change, 1 ),
+                ROUND ( _change, 3 )
+            )
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _change ), BLANK (),
+                _rounded > 0, "▲",
+                _rounded < 0, "▼",
+                "■"
+            )
+
+    // [YoY Assessment]   Format: Text
+    // Favourable / Unfavourable / Neutral, from the indicator's Direction.
+    // Labour Force Survey changes that are within sampling error are reported
+    // as "Not significant".
+    MEASURE '_Measures'[YoY Assessment] =
+        VAR _change = [YoY Headline Change]
+        VAR _rounded =
+            IF (
+                SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+                ROUND ( _change, 1 ),
+                ROUND ( _change, 3 )
+            )
+        VAR _direction = SELECTEDVALUE ( DimIndicator[Direction] )
+        VAR _significant = [YoY Change Is Significant]
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _change ), BLANK (),
+                NOT ISBLANK ( _significant ) && _significant = 0, "Not significant",
+                _rounded = 0 || _direction = "Neutral", "Neutral",
+                ( _rounded > 0 && _direction = "Higher is better" )
+                    || ( _rounded < 0 && _direction = "Lower is better" ), "Favourable",
+                "Unfavourable"
+            )
+
+    // [YoY Delta Label]   Format: Text
+    // For example "▼ -0.4 pts from Sep 2025 (not significant)".
+    MEASURE '_Measures'[YoY Delta Label] =
+        VAR _change = [YoY Headline Change]
+        VAR _isPoints = SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points"
+        VAR _amount =
+            IF (
+                _isPoints,
+                FORMAT ( _change, "+0.0;-0.0;0.0" ) & " pts",
+                FORMAT ( _change, "+0.0%;-0.0%;0.0%" )
+            )
+        VAR _when =
+            FORMAT (
+                [Year Ago Date],
+                IF ( SELECTEDVALUE ( DimIndicator[Frequency] ) = "Annual", "yyyy", "mmm yyyy" )
+            )
+        RETURN
+            IF (
+                NOT ISBLANK ( _change ),
+                [Change Direction Icon] & " " & _amount & " from " & _when
+                    & " (" & LOWER ( [YoY Assessment] ) & ")"
+            )
+
+    // [YoY Delta Colour]   Format: Text (use as conditional formatting "Field value")
+    MEASURE '_Measures'[YoY Delta Colour] =
+        SWITCH ( [YoY Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
+
+    // [Gap vs Canada (Display)]   Format: +0.0" pts";-0.0" pts";0.0" pts"
+    // Rates: level gap in points. Other indicators: gap between 12-month changes.
+    MEASURE '_Measures'[Gap vs Canada (Display)] =
+        IF (
+            SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+            [Gap vs Canada],
+            [YoY Gap vs Canada (pts)]
+        )
+
+    // [Gap Assessment]   Format: Text
+    MEASURE '_Measures'[Gap Assessment] =
+        VAR _raw = [Gap vs Canada (Display)]
+        VAR _gap = ROUND ( _raw, 1 )
+        VAR _direction = SELECTEDVALUE ( DimIndicator[Direction] )
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _raw ), BLANK (),
+                _gap = 0 || _direction = "Neutral", "Neutral",
+                ( _gap > 0 && _direction = "Higher is better" )
+                    || ( _gap < 0 && _direction = "Lower is better" ), "Favourable",
+                "Unfavourable"
+            )
+
+    // [Gap vs Canada Label]   Format: Text
+    // For example "1.3 pts above Canada (12-month change)".
+    MEASURE '_Measures'[Gap vs Canada Label] =
+        VAR _raw = [Gap vs Canada (Display)]
+        VAR _gap = ROUND ( _raw, 1 )
+        VAR _suffix =
+            IF ( SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points", "", " (12-month change)" )
+        RETURN
+            SWITCH (
+                TRUE (),
+                ISBLANK ( _raw ), BLANK (),
+                SELECTEDVALUE ( DimGeography[GeographyCode] ) = "CA", BLANK (),
+                _gap > 0, FORMAT ( _gap, "0.0" ) & " pts above Canada" & _suffix,
+                _gap < 0, FORMAT ( -_gap, "0.0" ) & " pts below Canada" & _suffix,
+                "Same as Canada" & _suffix
+            )
+
+    // [Gap Colour]   Format: Text (conditional formatting "Field value")
+    MEASURE '_Measures'[Gap Colour] =
+        SWITCH ( [Gap Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
+
+    // [Geography Colour]   Format: Text (conditional formatting "Field value")
+    // Keeps each geography's colour fixed when filters change.
+    MEASURE '_Measures'[Geography Colour] =
+        SELECTEDVALUE ( DimGeography[ColourHex] )
+
+    // [Index Chart Title]   Format: Text
+    MEASURE '_Measures'[Index Chart Title] =
+        SELECTEDVALUE ( DimIndicator[ShortName], "Selected indicator" ) & ", indexed to "
+            & SELECTEDVALUE ( BasePeriod[BaseLabel], "Jan 2018" ) & " = 100"
+
+    // [Source Note]   Format: Text
+    // Statistics Canada Open Licence notice for adapted products, with the
+    // tables behind the current visual and its latest reference period.
+    MEASURE '_Measures'[Source Note] =
+        VAR _tables = CALCULATETABLE ( VALUES ( DimSeries[TableId] ), FactObservation )
+        VAR _list = CONCATENATEX ( _tables, DimSeries[TableId], ", ", DimSeries[TableId], ASC )
+        VAR _label = IF ( COUNTROWS ( _tables ) > 1, "tables ", "table " )
+        RETURN
+            IF (
+                COUNTROWS ( _tables ) > 0,
+                "Adapted from Statistics Canada, " & _label & _list & ", data to "
+                    & FORMAT ( [Latest Date], "mmmm yyyy" )
+                    & ". This does not constitute an endorsement by Statistics Canada of this product."
+            )
+
+    // [Caution Note]   Format: Text
+    MEASURE '_Measures'[Caution Note] =
+        VAR _flagged = CALCULATE ( COUNTROWS ( FactObservation ), FactObservation[Status] = "E" )
+        RETURN
+            IF ( _flagged > 0, "Includes values flagged E (use with caution) by Statistics Canada." )
+
+// =============================================================================
+// Check query: one row per published estimate series with its latest value,
+// period and changes. Compare with docs/findings.md.
+// =============================================================================
+EVALUATE
+    SUMMARIZECOLUMNS (
+        DimIndicator[SortOrder],
+        DimIndicator[IndicatorCode],
+        DimGeography[ShortName],
+        TREATAS ( { "Estimate" }, DimIndicator[Statistic] ),
+        "Latest period", [Latest Period Label],
+        "Latest value", [Latest Value],
+        "YoY headline change", [YoY Headline Change],
+        "Gap vs Canada", [Gap vs Canada (Display)],
+        "Rolling 12-month total", [12-Month Rolling Total],
+        "Assessment", [YoY Assessment]
+    )
+    ORDER BY DimIndicator[SortOrder], DimGeography[ShortName]

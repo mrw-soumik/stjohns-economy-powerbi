@@ -1,0 +1,50 @@
+SortOrder,IndicatorCode,ShortName,Latest period,Latest value,YoY headline change,Gap vs Canada,Rolling 12-month total,Assessment
+1,CPI_ALL,Canada,August 2026,169.8,0.0303,0,,Unfavourable
+1,CPI_ALL,N.L.,August 2026,172.4,0.043,1.2612,,Unfavourable
+1,CPI_ALL,St. John's,August 2026,171.8,0.0437,1.3403,,Unfavourable
+2,CPI_SHELTER,Canada,August 2026,190.9,0.0154,0,,Unfavourable
+2,CPI_SHELTER,N.L.,August 2026,215.3,0.0467,3.1244,,Unfavourable
+2,CPI_SHELTER,St. John's,August 2026,210.6,0.0488,3.3379,,Unfavourable
+3,CPI_RENTED,Canada,August 2026,167.7,0.0276,0,,Unfavourable
+3,CPI_RENTED,N.L.,August 2026,176.6,0.0716,4.4028,,Unfavourable
+3,CPI_RENTED,St. John's,August 2026,188.6,0.1186,9.105,,Unfavourable
+4,CPI_OWNED,Canada,August 2026,196.1,0.0051,0,,Unfavourable
+4,CPI_OWNED,N.L.,August 2026,193.4,0.0206,1.5455,,Unfavourable
+4,CPI_OWNED,St. John's,August 2026,191.9,0.0137,0.8609,,Unfavourable
+5,CPI_WFE,Canada,August 2026,204.5,0.0487,0,,Unfavourable
+5,CPI_WFE,N.L.,August 2026,283.3,0.1006,5.1904,,Unfavourable
+5,CPI_WFE,St. John's,August 2026,280.8,0.0838,3.5033,,Unfavourable
+6,CPI_FOOD,Canada,August 2026,202.4,0.0285,0,,Unfavourable
+6,CPI_FOOD,N.L.,August 2026,200.7,0.0224,-0.6041,,Unfavourable
+7,CPI_ENERGY,Canada,August 2026,220.5,0.1545,0,,Unfavourable
+7,CPI_ENERGY,N.L.,August 2026,267.8,0.1923,3.7892,,Unfavourable
+8,LFS_UR,Canada,September 2026,6.5,-0.5,0,,Favourable
+8,LFS_UR,N.L.,September 2026,9,-1.6,2.5,,Favourable
+8,LFS_UR,St. John's,September 2026,6.6,-0.4,0.1,,Not significant
+9,LFS_ER,Canada,September 2026,60.8,0.2,0,,Favourable
+9,LFS_ER,N.L.,September 2026,51.6,0.1,-9.2,,Favourable
+9,LFS_ER,St. John's,September 2026,61.3,-0.5,0.5,,Unfavourable
+10,LFS_PR,Canada,September 2026,65,-0.2,0,,Unfavourable
+10,LFS_PR,N.L.,September 2026,56.7,-0.9,-8.3,,Unfavourable
+10,LFS_PR,St. John's,September 2026,65.7,-0.7,0.7,,Unfavourable
+11,LFS_EMP,Canada,September 2026,21164.2,0.0081,0,,Favourable
+11,LFS_EMP,N.L.,September 2026,245.1,0.0086,0.0578,,Not significant
+11,LFS_EMP,St. John's,September 2026,128.6,0.007,-0.1016,,Not significant
+16,POP,Canada,"July 1, 2026",41798407,0.0046,0,,Neutral
+16,POP,N.L.,"July 1, 2026",552462,0.0041,-0.0445,,Neutral
+16,POP,St. John's,"July 1, 2025",243478,0.0127,0.1841,,Neutral
+17,NHPI_TOTAL,Canada,August 2026,120.4,-0.0203,0,,Neutral
+17,NHPI_TOTAL,St. John's,August 2026,109.8,0,2.0342,,Neutral
+18,NHPI_HOUSE,Canada,August 2026,121.6,-0.0264,0,,Neutral
+18,NHPI_HOUSE,St. John's,August 2026,109.8,0,2.6421,,Neutral
+19,NHPI_LAND,Canada,August 2026,116.4,-0.0085,0,,Neutral
+19,NHPI_LAND,St. John's,August 2026,111,0,0.8518,,Neutral
+20,BP_UNITS,Canada,August 2026,24705,0.1346,0,299467,Favourable
+20,BP_UNITS,N.L.,August 2026,167,0.2556,12.1029,2091,Favourable
+20,BP_UNITS,St. John's,August 2026,122,0.2708,13.6223,1578,Favourable
+21,BP_UNITS_SINGLE,Canada,August 2026,4221,-0.0231,0,48320,Unfavourable
+21,BP_UNITS_SINGLE,N.L.,August 2026,73,-0.1412,-11.8034,717,Unfavourable
+21,BP_UNITS_SINGLE,St. John's,August 2026,41,-0.18,-15.6857,408,Unfavourable
+22,BP_UNITS_MULTI,Canada,August 2026,20484,0.1737,0,251147,Favourable
+22,BP_UNITS_MULTI,N.L.,August 2026,94,0.9583,78.4667,1374,Favourable
+22,BP_UNITS_MULTI,St. John's,August 2026,81,0.7609,58.7203,1170,Favourable
