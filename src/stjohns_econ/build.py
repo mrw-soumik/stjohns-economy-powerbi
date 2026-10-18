@@ -17,6 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 from .catalogue import load_geographies, load_indicators, load_series
+from .docgen import update_data_dictionary
 from .paths import PROCESSED_DIR, RAW_DIR, START_DATE
 
 FREQUENCY_CODES = {"Monthly": 6, "Quarterly": 9, "Annual": 12}
@@ -241,6 +242,8 @@ def run_build(raw_dir: Path = RAW_DIR, out_dir: Path = PROCESSED_DIR) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, df in tables.items():
         write_csv(df, out_dir / f"{name}.csv")
+    if out_dir == PROCESSED_DIR and update_data_dictionary():
+        notes.append("refreshed the generated tables in docs/data-dictionary.md")
     flagged = fact[fact["Status"] != ""].groupby("IndicatorKey").size()
     if not flagged.empty:
         names = indicators.set_index("IndicatorKey")["IndicatorCode"]
