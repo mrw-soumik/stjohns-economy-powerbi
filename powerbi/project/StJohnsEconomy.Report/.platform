@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "StJohnsEconomy"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c2d5619b-8512-5a54-b605-01eb7c47e8b0"
+  }
+}

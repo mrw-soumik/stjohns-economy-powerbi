@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "prices",
+  "displayName": "Prices",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "prices_f0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DimDate",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "datetime'2018-01-01T00:00:00'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_all",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_all_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_shelter",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_shelter_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_rent",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_rent_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_wfe",
+      "type": "NoFilter"
+    },
+    {
+      "source": "prices_slicer_geography",
+      "target": "pr_kpi_wfe_delta",
+      "type": "NoFilter"
+    }
+  ]
+}

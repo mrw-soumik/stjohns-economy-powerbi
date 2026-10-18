@@ -4,6 +4,10 @@ A star schema with one fact table at monthly (and, for population, annual) grain
 four dimensions and two disconnected helper tables. It is small (about 7,300 fact
 rows) and uses Import mode.
 
+The model is built from the files in this folder and also generated, with every
+setting below, as TMDL in `project/StJohnsEconomy.SemanticModel` (see
+[VALIDATION.md](VALIDATION.md) for how it was checked).
+
 ![Star schema of the semantic model](../docs/model-diagram.svg)
 
 ## Tables
@@ -133,6 +137,7 @@ top of `measures.dax`.
 | 7 Housing | Units Permitted per 1,000 Residents | 0.0 | 12-month dwelling units per 1,000 residents (latest July 1 population on or before the latest permit month) |
 | 7 Housing | Units per 1,000 vs Canada Label | Text | "0.7 below Canada (7.2)" |
 | 7 Housing | Units per 1,000 vs Canada Colour | Text | Hex colour for conditional formatting of that label |
+| 8 Display | YoY Period Label | Text | "12-month change, August 2026" (card subtitle) |
 | 8 Display | Change Direction Icon | Text | ▲, ▼ or ■ for the headline change |
 | 8 Display | YoY Assessment | Text | Favourable, Unfavourable, Neutral or Not significant |
 | 8 Display | YoY Delta Label | Text | Icon, change, comparison period and assessment in words |

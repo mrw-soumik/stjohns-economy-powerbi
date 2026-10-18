@@ -166,13 +166,13 @@ def row_positions(count: int, y: int, h: int) -> list[tuple[int, int, int, int]]
 # ---------------------------------------------------------------- pages
 
 def overview() -> Page:
-    tiles = row_positions(3, 72, 104) + row_positions(3, 192, 104)
+    tiles = row_positions(3, 72, 116) + row_positions(3, 204, 116)
     gap_label, gap_colour = m("Gap vs Canada Label"), m("Gap Colour")
     yoy_label, yoy_colour = m("YoY Delta Label"), m("YoY Delta Colour")
     k = [
-        ("ov_kpi_inflation", "Inflation (CPI all-items), 12-month change", m("YoY %"), gap_label, gap_colour, "CPI_ALL",
+        ("ov_kpi_inflation", "Inflation (CPI all-items)", m("YoY %"), gap_label, gap_colour, "CPI_ALL",
          "St. John's 12-month change in the all-items Consumer Price Index, with the gap to Canada in percentage points."),
-        ("ov_kpi_rent", "Rent (CPI rented accommodation), 12-month change", m("YoY %"), gap_label, gap_colour, "CPI_RENTED",
+        ("ov_kpi_rent", "Rent (CPI rented accommodation)", m("YoY %"), gap_label, gap_colour, "CPI_RENTED",
          "St. John's 12-month change in the rented accommodation index, with the gap to Canada."),
         ("ov_kpi_unemployment", "Unemployment rate", m("Latest Value"), yoy_label, yoy_colour, "LFS_UR",
          "St. John's unemployment rate, three-month moving average, with the change from a year earlier and whether it is statistically significant."),
@@ -188,8 +188,10 @@ def overview() -> Page:
                          "How is the St. John's economy doing right now, compared with Canada? Latest Statistics Canada "
                          "data for the St. John's census metropolitan area (CMA).")]
     for i, ((vid, title, value, delta, colour, code, alt), (x, y, w, h)) in enumerate(zip(k, tiles)):
-        visuals.append(kpi(vid, x, y, w, h, 2 + i, title, value, delta, colour, [ind(code), geo("SJ")], alt))
-    (x1, y1, w1, h1), (x2, y2, w2, h2) = row_positions(2, 312, 356)
+        subtitle = "YoY Period Label" if value.name == "YoY %" else "Latest Period Label"
+        visuals.append(kpi(vid, x, y, w, h, 2 + i, title, value, delta, colour, [ind(code), geo("SJ")], alt,
+                           subtitle_measure=subtitle))
+    (x1, y1, w1, h1), (x2, y2, w2, h2) = row_positions(2, 336, 332)
     visuals += [
         Visual("ov_chart_inflation", "line", x1, y1, w1, h1, tab=10, title="Inflation: 12-month change in the CPI",
                subtitle="All-items, not seasonally adjusted", roles={**MONTH_AXIS, "Y": [m("YoY %")], **GEO_SERIES},
@@ -208,19 +210,20 @@ def overview() -> Page:
 
 
 def prices() -> Page:
-    tiles = row_positions(4, 132, 100)
+    tiles = row_positions(4, 132, 112)
     gap_label, gap_colour = m("Gap vs Canada Label"), m("Gap Colour")
-    k = [("pr_kpi_all", "All-items CPI, 12-month change", "CPI_ALL"),
-         ("pr_kpi_shelter", "Shelter, 12-month change", "CPI_SHELTER"),
-         ("pr_kpi_rent", "Rented accommodation, 12-month change", "CPI_RENTED"),
-         ("pr_kpi_wfe", "Water, fuel and electricity, 12-month change", "CPI_WFE")]
+    k = [("pr_kpi_all", "All-items CPI", "CPI_ALL"),
+         ("pr_kpi_shelter", "Shelter", "CPI_SHELTER"),
+         ("pr_kpi_rent", "Rented accommodation", "CPI_RENTED"),
+         ("pr_kpi_wfe", "Water, fuel and electricity", "CPI_WFE")]
     visuals = [title_box("prices", "Prices and shelter costs",
                          "How fast are prices rising in St. John's compared with Canada, and which shelter costs are driving it?"),
                *slicers("prices")]
     for i, ((vid, title, code), (x, y, w, h)) in enumerate(zip(k, tiles)):
         visuals.append(kpi(vid, x, y, w, h, 5 + i, title, m("YoY %"), gap_label, gap_colour, [ind(code), geo("SJ")],
-                           f"St. John's {title.lower()}, with the gap to Canada in percentage points."))
-    (x1, y1, w1, h1), (x2, y2, w2, h2), (x3, y3, w3, h3) = row_positions(3, 244, 424)
+                           f"St. John's 12-month change in the {title} index, with the gap to Canada in percentage points.",
+                           subtitle_measure="YoY Period Label"))
+    (x1, y1, w1, h1), (x2, y2, w2, h2), (x3, y3, w3, h3) = row_positions(3, 256, 412)
     visuals += [
         Visual("pr_chart_inflation", "line", x1, y1, w1, h1, tab=10, title="12-month inflation, all-items CPI",
                subtitle="Per cent change from the same month a year earlier", roles={**MONTH_AXIS, "Y": [m("YoY %")], **GEO_SERIES},
@@ -244,7 +247,7 @@ def prices() -> Page:
 
 
 def jobs() -> Page:
-    tiles = row_positions(4, 132, 100)
+    tiles = row_positions(4, 132, 112)
     yoy_label, yoy_colour = m("YoY Delta Label"), m("YoY Delta Colour")
     k = [("jb_kpi_unemployment", "Unemployment rate", "LFS_UR"),
          ("jb_kpi_employment", "Employment (thousands)", "LFS_EMP"),
@@ -256,7 +259,7 @@ def jobs() -> Page:
     for i, ((vid, title, code), (x, y, w, h)) in enumerate(zip(k, tiles)):
         visuals.append(kpi(vid, x, y, w, h, 5 + i, title, m("Latest Value"), yoy_label, yoy_colour, [ind(code), geo("SJ")],
                            f"St. John's {title.lower()}, three-month moving average, with the 12-month change and whether it is statistically significant."))
-    (x1, y1, w1, h1), (x2, y2, w2, h2), (x3, y3, w3, h3) = row_positions(3, 244, 424)
+    (x1, y1, w1, h1), (x2, y2, w2, h2), (x3, y3, w3, h3) = row_positions(3, 256, 412)
     visuals += [
         Visual("jb_chart_unemployment", "line", x1, y1, w1, h1, tab=10, title="Unemployment rate",
                subtitle="Three-month moving average, seasonally adjusted", roles={**MONTH_AXIS, "Y": [m("Latest Value")], **GEO_SERIES},
@@ -280,7 +283,7 @@ def jobs() -> Page:
 
 
 def housing() -> Page:
-    tiles = row_positions(4, 132, 100)
+    tiles = row_positions(4, 132, 112)
     visuals = [title_box("housing", "Housing and population",
                          "Is new housing supply keeping pace with population growth, and what is happening to new-home prices?"),
                *slicers("housing")]
@@ -295,11 +298,12 @@ def housing() -> Page:
         kpi("hs_kpi_population", *tiles[2], 7, "Population, July 1", m("Latest Value"), m("YoY Delta Label"),
             m("YoY Delta Colour"), [ind("POP"), geo("SJ")],
             "St. John's CMA population on July 1 of the latest year, with growth from the year before."),
-        kpi("hs_kpi_new_home_prices", *tiles[3], 8, "New housing prices, 12-month change", m("YoY %"), m("Gap vs Canada Label"),
+        kpi("hs_kpi_new_home_prices", *tiles[3], 8, "New housing prices", m("YoY %"), m("Gap vs Canada Label"),
             m("Gap Colour"), [ind("NHPI_TOTAL"), geo("SJ")],
-            "St. John's 12-month change in the New Housing Price Index, with the gap to Canada."),
+            "St. John's 12-month change in the New Housing Price Index, with the gap to Canada.",
+            subtitle_measure="YoY Period Label"),
     ]
-    (x1, y1, w1, h1), (x2, y2, w2, h2), (x3, y3, w3, h3), (x4, y4, w4, h4) = row_positions(4, 244, 424)
+    (x1, y1, w1, h1), (x2, y2, w2, h2), (x3, y3, w3, h3), (x4, y4, w4, h4) = row_positions(4, 256, 412)
     visuals += [
         Visual("hs_chart_permits_by_type", "column_stacked", x1, y1, w1, h1, tab=10,
                title="Dwelling units permitted per year, St. John's", subtitle="Calendar years; the latest year is partial",

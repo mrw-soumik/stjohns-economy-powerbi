@@ -150,6 +150,9 @@
       }
     }
     if (visual.subtitle_measure === "Latest Period Label" && ind) period = SJM.periodLabel(M.latestDate(ind, geo, range), meta.frequency);
+    if (visual.subtitle_measure === "YoY Period Label" && ind) {
+      period = "12-month change, " + SJM.periodLabel(M.latestDate(ind, geo, range), meta.frequency);
+    }
     switch (visual.delta.name) {
       case "Gap vs Canada Label": delta = M.gapDelta(ind, geo, range); break;
       case "YoY Delta Label": delta = M.yoyDelta(ind, geo, range); break;

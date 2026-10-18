@@ -1,0 +1,104 @@
+table DimGeography
+	lineageTag: 0b5b18ae-5117-5ce9-bb92-26ae50a8e2dd
+
+	column GeographyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: aa4adb64-5459-549c-ac00-1fed9a879fa6
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = User
+
+	column GeographyCode
+		dataType: string
+		lineageTag: 1de3208a-1bf9-5b8c-b295-973a72e1cc07
+		summarizeBy: none
+		sourceColumn: GeographyCode
+
+		annotation SummarizationSetBy = User
+
+	column GeographyName
+		dataType: string
+		lineageTag: 08fe1084-a91b-5b95-ab9b-e9ea67a802fe
+		summarizeBy: none
+		sourceColumn: GeographyName
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	column ShortName
+		dataType: string
+		lineageTag: 7e2d44ed-bb6a-553e-8700-d7ce9b7aceb3
+		summarizeBy: none
+		sourceColumn: ShortName
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	column GeographyLevel
+		dataType: string
+		lineageTag: 043eaffd-e721-5396-90aa-c305cb6dd7c3
+		summarizeBy: none
+		sourceColumn: GeographyLevel
+
+		annotation SummarizationSetBy = User
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: abc2169e-da3f-51d0-a45e-93b023d876ee
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	column ColourHex
+		dataType: string
+		lineageTag: 4968f7f6-bf31-5afd-80ea-6b4ae168543d
+		summarizeBy: none
+		sourceColumn: ColourHex
+
+		annotation SummarizationSetBy = User
+
+	column ColourHexDark
+		dataType: string
+		lineageTag: 7234b5ed-d3cd-5f13-86a9-8cdc11dca09e
+		summarizeBy: none
+		sourceColumn: ColourHexDark
+
+		annotation SummarizationSetBy = User
+
+	column MarkerShape
+		dataType: string
+		lineageTag: 921b3d26-9571-50b4-8159-6d6b18778862
+		summarizeBy: none
+		sourceColumn: MarkerShape
+
+		annotation SummarizationSetBy = User
+
+	partition DimGeography = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("DimGeography.csv"),
+				    Typed = Table.TransformColumnTypes(
+				        Source,
+				        {
+				            {"GeographyKey", Int64.Type},
+				            {"GeographyCode", type text},
+				            {"GeographyName", type text},
+				            {"ShortName", type text},
+				            {"GeographyLevel", type text},
+				            {"SortOrder", Int64.Type},
+				            {"ColourHex", type text},
+				            {"ColourHexDark", type text},
+				            {"MarkerShape", type text}
+				        },
+				        "en-CA"
+				    )
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

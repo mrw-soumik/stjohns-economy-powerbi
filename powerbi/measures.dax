@@ -19,9 +19,10 @@
 //   F1  indicator's own format (index, %, thousands, units)
 //         SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
 //   F2  signed change in the indicator's unit; rates change in points
-//         VAR _f = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
-//         RETURN IF ( SELECTEDVALUE ( DimIndicator[Unit] ) = "Percent",
-//             "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+" & _f & ";-" & _f & ";" & _f )
+//         IF ( SELECTEDVALUE ( DimIndicator[Unit] ) = "Percent", "+0.0"" pts"";-0.0"" pts"";0.0"" pts""",
+//             "+" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";-"
+//             & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";"
+//             & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) )
 //   F3  headline change: points for rates, per cent for everything else
 //         IF ( SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
 //             "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+0.0%;-0.0%;0.0%" )
@@ -364,7 +365,8 @@ DEFINE
             IF ( NOT ISBLANK ( _local ) && NOT ISBLANK ( _canada ), _local - _canada )
 
     // =========================================================================
-    // Display folder: 6 Survey precision (Labour Force Survey)
+    // Display folder: 6 Survey precision
+    // (Labour Force Survey standard errors and significance tests)
     // =========================================================================
 
     // [Standard Error]   Format: Dynamic F1
@@ -551,10 +553,18 @@ DEFINE
             )
 
     // =========================================================================
-    // Display folder: 8 Display (labels, colours, titles)
+    // Display folder: 8 Display
+    // (labels, colours and titles for the report)
     // Colours are text tokens that pass WCAG contrast on the light surface;
     // every colour is paired with an icon and a word, never used alone.
     // =========================================================================
+
+    // [YoY Period Label]   Format: Text
+    // "12-month change, August 2026": subtitle for cards that show [YoY %].
+    MEASURE '_Measures'[YoY Period Label] =
+        VAR _period = [Latest Period Label]
+        RETURN
+            IF ( NOT ISBLANK ( _period ), "12-month change, " & _period )
 
     // [Change Direction Icon]   Format: Text
     MEASURE '_Measures'[Change Direction Icon] =

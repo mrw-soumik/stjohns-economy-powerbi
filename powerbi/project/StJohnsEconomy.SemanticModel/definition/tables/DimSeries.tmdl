@@ -1,0 +1,234 @@
+table DimSeries
+	lineageTag: 661916a5-655a-5e63-a5e3-3157df429d01
+
+	column SeriesKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a0852a17-1bff-5ea2-bab7-19b7c7f4d751
+		summarizeBy: none
+		sourceColumn: SeriesKey
+
+		annotation SummarizationSetBy = User
+
+	column VectorLabel
+		dataType: string
+		lineageTag: acc1fd8b-e90a-5376-b2f5-d7b479f54ad6
+		summarizeBy: none
+		sourceColumn: VectorLabel
+
+		annotation SummarizationSetBy = User
+
+	column TableId
+		dataType: string
+		lineageTag: 03ca2bd0-c7dd-5170-bc19-62a9b1c78041
+		summarizeBy: none
+		sourceColumn: TableId
+
+		annotation SummarizationSetBy = User
+
+	column TableTitle
+		dataType: string
+		lineageTag: 88966001-0870-5654-b667-19761f9abac7
+		summarizeBy: none
+		sourceColumn: TableTitle
+
+		annotation SummarizationSetBy = User
+
+	column TableUrl
+		dataType: string
+		lineageTag: 4821b80f-d1fc-5cc5-b749-96a61ff13f17
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: TableUrl
+
+		annotation SummarizationSetBy = User
+
+	column TableDoi
+		dataType: string
+		lineageTag: ba53fdb1-2aca-5669-b93d-b7db4eb55e45
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: TableDoi
+
+		annotation SummarizationSetBy = User
+
+	column Coordinate
+		dataType: string
+		lineageTag: 85596d0b-014e-5cb2-87f7-64ca91e52969
+		summarizeBy: none
+		sourceColumn: Coordinate
+
+		annotation SummarizationSetBy = User
+
+	column SourceSeriesTitle
+		dataType: string
+		lineageTag: ce6b6350-4ffd-53bc-8be5-90f14c758e52
+		summarizeBy: none
+		sourceColumn: SourceSeriesTitle
+
+		annotation SummarizationSetBy = User
+
+	column SourceGeography
+		dataType: string
+		lineageTag: 82c1949d-1152-5510-9fa3-bf8c7fcc814c
+		summarizeBy: none
+		sourceColumn: SourceGeography
+
+		annotation SummarizationSetBy = User
+
+	column SourceGeographyCode
+		dataType: string
+		lineageTag: 8787584f-fa9a-5dfa-8549-3a7ff3e372c9
+		summarizeBy: none
+		sourceColumn: SourceGeographyCode
+
+		annotation SummarizationSetBy = User
+
+	column SourceGeographyVintage
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fb3c555-d63b-52bb-884e-2c013612b7dd
+		summarizeBy: none
+		sourceColumn: SourceGeographyVintage
+
+		annotation SummarizationSetBy = User
+
+	column GeographyCode
+		dataType: string
+		lineageTag: 410888c3-30d4-55b6-b20d-fc96d25f6897
+		summarizeBy: none
+		sourceColumn: GeographyCode
+
+		annotation SummarizationSetBy = User
+
+	column GeographyName
+		dataType: string
+		lineageTag: 34d14642-0999-5dc0-8db4-ed33590f9f24
+		summarizeBy: none
+		sourceColumn: GeographyName
+
+		annotation SummarizationSetBy = User
+
+	column IndicatorCode
+		dataType: string
+		lineageTag: 3ddd6eb6-c2b9-5fc8-ab0e-60beab4ea984
+		summarizeBy: none
+		sourceColumn: IndicatorCode
+
+		annotation SummarizationSetBy = User
+
+	column UnitOfMeasure
+		dataType: string
+		lineageTag: 99914721-856e-5ee0-82fc-c79b2a352326
+		summarizeBy: none
+		sourceColumn: UnitOfMeasure
+
+		annotation SummarizationSetBy = User
+
+	column ScalarFactor
+		dataType: string
+		lineageTag: dc28267f-e3ab-5747-8a5b-656b1e3a61f2
+		summarizeBy: none
+		sourceColumn: ScalarFactor
+
+		annotation SummarizationSetBy = User
+
+	column Frequency
+		dataType: string
+		lineageTag: d46160e5-155b-5566-8924-a346f17843f5
+		summarizeBy: none
+		sourceColumn: Frequency
+
+		annotation SummarizationSetBy = User
+
+	column FirstDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: e3fda3e2-e5e4-5b69-a420-418d8055e25e
+		summarizeBy: none
+		sourceColumn: FirstDate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LastDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 281c714d-688c-59f1-a159-ddbd830f5b41
+		summarizeBy: none
+		sourceColumn: LastDate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ObservationCount
+		dataType: int64
+		formatString: 0
+		lineageTag: ca0ab3e4-6222-52d2-a1ba-42de866bddad
+		summarizeBy: none
+		sourceColumn: ObservationCount
+
+		annotation SummarizationSetBy = User
+
+	column LatestReleaseDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 5891371a-824b-51db-b761-3fdddcc4bc19
+		summarizeBy: none
+		sourceColumn: LatestReleaseDate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TableReleaseDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 94756f56-a0e3-5717-9a57-10aba4ad4202
+		summarizeBy: none
+		sourceColumn: TableReleaseDate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DimSeries = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("DimSeries.csv"),
+				    Typed = Table.TransformColumnTypes(
+				        Source,
+				        {
+				            {"SeriesKey", Int64.Type},
+				            {"VectorLabel", type text},
+				            {"TableId", type text},
+				            {"TableTitle", type text},
+				            {"TableUrl", type text},
+				            {"TableDoi", type text},
+				            {"Coordinate", type text},
+				            {"SourceSeriesTitle", type text},
+				            {"SourceGeography", type text},
+				            {"SourceGeographyCode", type text},
+				            {"SourceGeographyVintage", Int64.Type},
+				            {"GeographyCode", type text},
+				            {"GeographyName", type text},
+				            {"IndicatorCode", type text},
+				            {"UnitOfMeasure", type text},
+				            {"ScalarFactor", type text},
+				            {"Frequency", type text},
+				            {"FirstDate", type date},
+				            {"LastDate", type date},
+				            {"ObservationCount", Int64.Type},
+				            {"LatestReleaseDate", type date},
+				            {"TableReleaseDate", type date}
+				        },
+				        "en-CA"
+				    )
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

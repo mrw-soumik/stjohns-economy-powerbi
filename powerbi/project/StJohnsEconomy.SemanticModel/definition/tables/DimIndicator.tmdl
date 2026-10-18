@@ -1,0 +1,205 @@
+table DimIndicator
+	lineageTag: e7de0795-34ca-5287-b8e0-5475e1ee8eab
+
+	column IndicatorKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 588565be-bb3f-533c-9eb7-3751c4d1271e
+		summarizeBy: none
+		sourceColumn: IndicatorKey
+
+		annotation SummarizationSetBy = User
+
+	column IndicatorCode
+		dataType: string
+		lineageTag: 7d8ab325-a2ee-548c-9947-f28623b63569
+		summarizeBy: none
+		sourceColumn: IndicatorCode
+
+		annotation SummarizationSetBy = User
+
+	column IndicatorName
+		dataType: string
+		lineageTag: 8519f9bc-cd61-5954-aa65-908ba9bc072b
+		summarizeBy: none
+		sourceColumn: IndicatorName
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	column ShortName
+		dataType: string
+		lineageTag: 2fc16bce-d824-56da-a706-b2dd18aba30e
+		summarizeBy: none
+		sourceColumn: ShortName
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	column Topic
+		dataType: string
+		lineageTag: b9ab5283-d133-51d1-af46-53c28883f34e
+		summarizeBy: none
+		sourceColumn: Topic
+
+		annotation SummarizationSetBy = User
+
+	column Subtopic
+		dataType: string
+		lineageTag: 16d1b6cf-9b10-59d9-af74-a2b69d1755c6
+		summarizeBy: none
+		sourceColumn: Subtopic
+
+		annotation SummarizationSetBy = User
+
+	column Unit
+		dataType: string
+		lineageTag: 52b05312-6f37-5d97-af5c-f0688471c192
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = User
+
+	column Frequency
+		dataType: string
+		lineageTag: 50b0d3f0-219f-5f5f-bdda-5a48c8a5ebc8
+		summarizeBy: none
+		sourceColumn: Frequency
+
+		annotation SummarizationSetBy = User
+
+	column Adjustment
+		dataType: string
+		lineageTag: 319cb7ac-bffd-5288-b2fc-3fb7370075c1
+		summarizeBy: none
+		sourceColumn: Adjustment
+
+		annotation SummarizationSetBy = User
+
+	column Statistic
+		dataType: string
+		lineageTag: 07bb67ce-fa70-5060-89c0-917fa8ba5260
+		summarizeBy: none
+		sourceColumn: Statistic
+
+		annotation SummarizationSetBy = User
+
+	column AggregationMethod
+		dataType: string
+		lineageTag: 6db0e520-e740-52d1-b011-34e791e69751
+		summarizeBy: none
+		sourceColumn: AggregationMethod
+
+		annotation SummarizationSetBy = User
+
+	column ChangeType
+		dataType: string
+		lineageTag: 87269fc4-e834-5635-b8f3-6d5a0bf165da
+		summarizeBy: none
+		sourceColumn: ChangeType
+
+		annotation SummarizationSetBy = User
+
+	column Direction
+		dataType: string
+		lineageTag: 8120cbf1-4b70-5aea-9d31-201a154b8d4e
+		summarizeBy: none
+		sourceColumn: Direction
+
+		annotation SummarizationSetBy = User
+
+	column Decimals
+		dataType: int64
+		formatString: 0
+		lineageTag: 27b3f656-b747-532e-90f2-1b19161a334a
+		summarizeBy: none
+		sourceColumn: Decimals
+
+		annotation SummarizationSetBy = User
+
+	column FormatString
+		dataType: string
+		lineageTag: 246af114-739f-5c36-bcf8-eecf0f224b10
+		summarizeBy: none
+		sourceColumn: FormatString
+
+		annotation SummarizationSetBy = User
+
+	column StdErrCode
+		dataType: string
+		lineageTag: aa54b6b7-e464-5521-9ce8-dfce542dc73b
+		summarizeBy: none
+		sourceColumn: StdErrCode
+
+		annotation SummarizationSetBy = User
+
+	column StdErrYoYCode
+		dataType: string
+		lineageTag: 8b48313f-366d-5e9e-8308-8ec7eeb686c7
+		summarizeBy: none
+		sourceColumn: StdErrYoYCode
+
+		annotation SummarizationSetBy = User
+
+	column ReferenceDay
+		dataType: string
+		lineageTag: fb9b7312-38e2-5aad-85d6-60325fae9b5f
+		summarizeBy: none
+		sourceColumn: ReferenceDay
+
+		annotation SummarizationSetBy = User
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 51498b23-72cc-54e8-b425-0b10d3d93dff
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	column Description
+		dataType: string
+		lineageTag: b3ee7f65-7286-583b-80f1-e4b3530ca8c5
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = User
+
+	partition DimIndicator = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("DimIndicator.csv"),
+				    Typed = Table.TransformColumnTypes(
+				        Source,
+				        {
+				            {"IndicatorKey", Int64.Type},
+				            {"IndicatorCode", type text},
+				            {"IndicatorName", type text},
+				            {"ShortName", type text},
+				            {"Topic", type text},
+				            {"Subtopic", type text},
+				            {"Unit", type text},
+				            {"Frequency", type text},
+				            {"Adjustment", type text},
+				            {"Statistic", type text},
+				            {"AggregationMethod", type text},
+				            {"ChangeType", type text},
+				            {"Direction", type text},
+				            {"Decimals", Int64.Type},
+				            {"FormatString", type text},
+				            {"StdErrCode", type text},
+				            {"StdErrYoYCode", type text},
+				            {"ReferenceDay", type text},
+				            {"SortOrder", Int64.Type},
+				            {"Description", type text}
+				        },
+				        "en-CA"
+				    ),
+				    Blanks = Table.ReplaceValue(Typed, "", null, Replacer.ReplaceValue, {"StdErrCode", "StdErrYoYCode", "ReferenceDay"})
+				in
+				    Blanks
+
+	annotation PBI_ResultType = Table

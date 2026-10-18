@@ -1,0 +1,106 @@
+table FactObservation
+	lineageTag: d5f9e243-7fc0-5f07-86b5-08730c7e993a
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 92a67c29-037d-564d-956e-b2ef9d0bd778
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column GeographyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 72b137bd-1509-53f1-a4ea-9a5e2f04a74e
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = User
+
+	column IndicatorKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 992540b9-c818-5152-a0cb-fe4d01f6813e
+		summarizeBy: none
+		sourceColumn: IndicatorKey
+
+		annotation SummarizationSetBy = User
+
+	column SeriesKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 226ea59b-a857-5bad-9181-a5e4b61297d1
+		summarizeBy: none
+		sourceColumn: SeriesKey
+
+		annotation SummarizationSetBy = User
+
+	column Value
+		dataType: double
+		isHidden
+		formatString: #,0.0###
+		lineageTag: 01077be7-1997-5568-8275-88192604578e
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: 62261fde-08eb-5dbf-9ead-7c733f8bc20e
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = User
+
+	column Symbol
+		dataType: string
+		lineageTag: baefc211-d1bf-58e5-b916-7d2edfcaa452
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = User
+
+	column ReleaseDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 1789a735-f6fb-5bb3-8a2f-7e06fad46629
+		summarizeBy: none
+		sourceColumn: ReleaseDate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition FactObservation = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("FactObservation.csv"),
+				    Typed = Table.TransformColumnTypes(
+				        Source,
+				        {
+				            {"Date", type date},
+				            {"GeographyKey", Int64.Type},
+				            {"IndicatorKey", Int64.Type},
+				            {"SeriesKey", Int64.Type},
+				            {"Value", type number},
+				            {"Status", type text},
+				            {"Symbol", type text},
+				            {"ReleaseDate", type date}
+				        },
+				        "en-CA"
+				    ),
+				    // Empty flags mean "no flag": store them as null rather than "".
+				    Flags = Table.ReplaceValue(Typed, "", null, Replacer.ReplaceValue, {"Status", "Symbol"})
+				in
+				    Flags
+
+	annotation PBI_ResultType = Table

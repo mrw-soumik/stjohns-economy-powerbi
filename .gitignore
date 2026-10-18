@@ -12,7 +12,7 @@ dist/
 .vscode/
 .idea/
 
-# Power BI temporary and cache files (the .pbix/.pbip itself may be committed later)
+# Power BI Desktop local settings and data cache inside PBIP item folders
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
 *.pbix.bak
-.pbi/localSettings.json
-.pbi/cache.abf

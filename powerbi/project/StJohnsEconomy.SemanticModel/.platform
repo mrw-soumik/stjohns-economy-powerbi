@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "StJohnsEconomy"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "81f3a759-c4e1-5dc0-919f-690f7a2b91e7"
+  }
+}

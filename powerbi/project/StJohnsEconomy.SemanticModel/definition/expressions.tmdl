@@ -1,0 +1,22 @@
+expression RepoPath = "mrw-soumik/stjohns-economy-powerbi/main/data/processed/" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: ab1280b1-80a6-529b-8572-d7130a24d659
+
+	annotation PBI_ResultType = Text
+
+expression fnLoadCsv =
+		(fileName as text) as table =>
+		let
+		    Source = Web.Contents(
+		        "https://raw.githubusercontent.com",
+		        [RelativePath = RepoPath & fileName]
+		    ),
+		    Parsed = Csv.Document(
+		        Source,
+		        [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+		    ),
+		    Promoted = Table.PromoteHeaders(Parsed, [PromoteAllScalars = true])
+		in
+		    Promoted
+	lineageTag: 6c7f9cce-10fb-51fd-9c74-2dd09d880421
+
+	annotation PBI_ResultType = Function

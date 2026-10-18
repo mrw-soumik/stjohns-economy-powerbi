@@ -1,0 +1,827 @@
+table _Measures
+	lineageTag: 96992dda-3f67-5824-b971-6cb3a7229f10
+
+	/// Averages stocks, rates and indexes; sums flows (building permits).
+	measure Value = ```
+			VAR _method = SELECTEDVALUE ( DimIndicator[AggregationMethod] )
+			RETURN
+			    IF (
+			        HASONEVALUE ( DimGeography[GeographyKey] ),
+			        SWITCH (
+			            _method,
+			            "Sum", SUM ( FactObservation[Value] ),
+			            "Average", AVERAGE ( FactObservation[Value] )
+			        )
+			    )
+			```
+		displayFolder: 1 Core
+		lineageTag: c543243e-99ef-555f-832a-c2e086d5ea36
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	measure 'Latest Date' = ```
+			MAX ( FactObservation[Date] )
+			```
+		formatString: mmm yyyy
+		displayFolder: 1 Core
+		lineageTag: f5943402-3921-5e6c-9442-3c9957dbb904
+
+	measure 'Latest Value' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ),
+			        CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _date )
+			    )
+			```
+		displayFolder: 1 Core
+		lineageTag: c3e37248-8797-5ec1-8e04-5381cc73fa3f
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// "August 2026" for monthly series, "July 1, 2025" for annual population.
+	measure 'Latest Period Label' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ),
+			        IF (
+			            SELECTEDVALUE ( DimIndicator[Frequency] ) = "Annual",
+			            FORMAT ( _date, "mmmm d, yyyy" ),
+			            FORMAT ( _date, "mmmm yyyy" )
+			        )
+			    )
+			```
+		displayFolder: 1 Core
+		lineageTag: 8799fabf-1532-5c05-a282-35dcf39a475f
+
+	measure 'Previous Period Date' = ```
+			VAR _date = [Latest Date]
+			VAR _months =
+			    SWITCH (
+			        SELECTEDVALUE ( DimIndicator[Frequency] ),
+			        "Monthly", 1,
+			        "Quarterly", 3,
+			        "Annual", 12
+			    )
+			RETURN
+			    IF ( NOT ISBLANK ( _date ) && NOT ISBLANK ( _months ), EDATE ( _date, -_months ) )
+			```
+		formatString: mmm yyyy
+		displayFolder: 2 Change
+		lineageTag: a7e4a640-7125-52d1-82f7-1770e658959e
+
+	measure 'Previous Period Value' = ```
+			VAR _previous = [Previous Period Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _previous ),
+			        CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _previous )
+			    )
+			```
+		displayFolder: 2 Change
+		lineageTag: b5ec80f8-3aca-5b3d-859b-e67fe393ed5a
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	measure 'Change vs Previous Period' = ```
+			VAR _current = [Latest Value]
+			VAR _previous = [Previous Period Value]
+			RETURN
+			    IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _previous ), _current - _previous )
+			```
+		displayFolder: 2 Change
+		lineageTag: a3961af1-577c-585e-90e8-1bab735057c3
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( DimIndicator[Unit] ) = "Percent", "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";-" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) )
+
+	measure '% Change vs Previous Period' = ```
+			DIVIDE ( [Change vs Previous Period], [Previous Period Value] )
+			```
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 2 Change
+		lineageTag: 171b0a0d-2461-50e2-acbd-1a29485d36aa
+
+	measure 'Year Ago Date' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF ( NOT ISBLANK ( _date ), EDATE ( _date, -12 ) )
+			```
+		formatString: mmm yyyy
+		displayFolder: 2 Change
+		lineageTag: cef1dab7-c51b-5322-baa0-88a741eac4f9
+
+	measure 'Value Year Ago' = ```
+			VAR _yearAgo = [Year Ago Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _yearAgo ),
+			        CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _yearAgo )
+			    )
+			```
+		displayFolder: 2 Change
+		lineageTag: 4cc6c843-af23-53d3-a7c4-f78719ea8e4e
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// Change from the same period a year earlier, in the indicator's unit.
+	measure 'YoY Change' = ```
+			VAR _current = [Latest Value]
+			VAR _yearAgo = [Value Year Ago]
+			RETURN
+			    IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _yearAgo ), _current - _yearAgo )
+			```
+		displayFolder: 2 Change
+		lineageTag: f6886fed-8943-5bad-9cb2-8ece225cf1b5
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( DimIndicator[Unit] ) = "Percent", "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";-" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) )
+
+	/// For the CPI this is the 12-month inflation rate.
+	measure 'YoY %' = ```
+			DIVIDE ( [YoY Change], [Value Year Ago] )
+			```
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 2 Change
+		lineageTag: 501ca829-186d-5554-866a-69a02070e345
+
+	/// Rates (unemployment, employment, participation) change in percentage points; everything else changes in per cent.
+	measure 'YoY Headline Change' = ```
+			IF (
+			    SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+			    [YoY Change],
+			    [YoY %]
+			)
+			```
+		displayFolder: 2 Change
+		lineageTag: 63b52521-0201-55ff-ac86-fa55e965d0b9
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points", "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+0.0%;-0.0%;0.0%" )
+
+	/// Average of the 12 monthly values ending at the latest month; blank until 12 months of data exist.
+	measure '12-Month Rolling Average' = ```
+			VAR _date = [Latest Date]
+			VAR _isMonthly = SELECTEDVALUE ( DimIndicator[Frequency] ) = "Monthly"
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ) && _isMonthly && HASONEVALUE ( DimGeography[GeographyKey] ),
+			        VAR _start = EDATE ( _date, -11 )
+			        VAR _months =
+			            CALCULATE (
+			                DISTINCTCOUNT ( FactObservation[Date] ),
+			                REMOVEFILTERS ( DimDate ),
+			                DimDate[Date] >= _start && DimDate[Date] <= _date
+			            )
+			        RETURN
+			            IF (
+			                _months = 12,
+			                CALCULATE (
+			                    AVERAGE ( FactObservation[Value] ),
+			                    REMOVEFILTERS ( DimDate ),
+			                    DimDate[Date] >= _start && DimDate[Date] <= _date
+			                )
+			            )
+			    )
+			```
+		displayFolder: 3 Rolling 12 months
+		lineageTag: 3dc80063-6865-5daa-8ccb-6d834526c5a6
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// Sum of the 12 monthly values ending at the latest month, for flow indicators (dwelling units created by building permits). Removes seasonality without seasonal adjustment.
+	measure '12-Month Rolling Total' = ```
+			VAR _date = [Latest Date]
+			VAR _isFlow = SELECTEDVALUE ( DimIndicator[AggregationMethod] ) = "Sum"
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ) && _isFlow && HASONEVALUE ( DimGeography[GeographyKey] ),
+			        VAR _start = EDATE ( _date, -11 )
+			        VAR _months =
+			            CALCULATE (
+			                DISTINCTCOUNT ( FactObservation[Date] ),
+			                REMOVEFILTERS ( DimDate ),
+			                DimDate[Date] >= _start && DimDate[Date] <= _date
+			            )
+			        RETURN
+			            IF (
+			                _months = 12,
+			                CALCULATE (
+			                    SUM ( FactObservation[Value] ),
+			                    REMOVEFILTERS ( DimDate ),
+			                    DimDate[Date] >= _start && DimDate[Date] <= _date
+			                )
+			            )
+			    )
+			```
+		formatString: #,0
+		displayFolder: 3 Rolling 12 months
+		lineageTag: c5d2245d-cb91-5fa4-967c-d10a862bba9a
+
+	measure '12-Month Rolling Total Year Ago' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ),
+			        CALCULATE (
+			            [12-Month Rolling Total],
+			            REMOVEFILTERS ( DimDate ),
+			            DimDate[Date] = EDATE ( _date, -12 )
+			        )
+			    )
+			```
+		formatString: #,0
+		displayFolder: 3 Rolling 12 months
+		lineageTag: 3f3a4b6b-a44a-537e-8169-bddebea296cf
+
+	measure '12-Month Rolling Total YoY %' = ```
+			VAR _current = [12-Month Rolling Total]
+			VAR _yearAgo = [12-Month Rolling Total Year Ago]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _current ) && NOT ISBLANK ( _yearAgo ),
+			        DIVIDE ( _current - _yearAgo, _yearAgo )
+			    )
+			```
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Rolling 12 months
+		lineageTag: a1688196-4deb-58ef-b103-93ba7ee4fb1d
+
+	/// Month picked in the BasePeriod slicer (January 2018 if none). Annual series use their reference day in the base year (July 1 for population).
+	measure 'Base Date' = ```
+			VAR _selected = SELECTEDVALUE ( BasePeriod[BaseDate], DATE ( 2018, 1, 1 ) )
+			VAR _referenceDay = SELECTEDVALUE ( DimIndicator[ReferenceDay] )
+			RETURN
+			    IF (
+			        SELECTEDVALUE ( DimIndicator[Frequency] ) = "Annual" && NOT ISBLANK ( _referenceDay ),
+			        DATE (
+			            YEAR ( _selected ),
+			            VALUE ( LEFT ( _referenceDay, 2 ) ),
+			            VALUE ( RIGHT ( _referenceDay, 2 ) )
+			        ),
+			        _selected
+			    )
+			```
+		formatString: mmm yyyy
+		displayFolder: 4 Index to base period
+		lineageTag: ab2cddf2-8aa6-5026-bb85-ad21c159f9de
+
+	measure 'Base Value' = ```
+			VAR _base = [Base Date]
+			RETURN
+			    CALCULATE ( [Value], REMOVEFILTERS ( DimDate ), DimDate[Date] = _base )
+			```
+		displayFolder: 4 Index to base period
+		lineageTag: b2c3ecee-59e0-58eb-bb97-aa8cfe5e67c9
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// Rebases any series to 100 in the base period so that St. John's, the province and Canada share one axis (no dual axes).
+	measure 'Index (Base = 100)' = ```
+			VAR _base = [Base Value]
+			VAR _current = [Latest Value]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _base ) && NOT ISBLANK ( _current ),
+			        DIVIDE ( _current, _base ) * 100
+			    )
+			```
+		formatString: 0.0
+		displayFolder: 4 Index to base period
+		lineageTag: 97b8efeb-9fa1-5799-b8b8-b323778d26c0
+
+	measure 'Change Since Base %' = ```
+			VAR _index = [Index (Base = 100)]
+			RETURN
+			    IF ( NOT ISBLANK ( _index ), _index / 100 - 1 )
+			```
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Index to base period
+		lineageTag: 8c6fdf70-c0b1-52d4-82ed-f83a6368bc88
+
+	/// Canada's value for the same indicator and the same period as the geography in context.
+	measure 'Canada Value' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ),
+			        CALCULATE (
+			            [Value],
+			            REMOVEFILTERS ( DimGeography ),
+			            DimGeography[GeographyCode] = "CA",
+			            REMOVEFILTERS ( DimDate ),
+			            DimDate[Date] = _date
+			        )
+			    )
+			```
+		displayFolder: 5 Comparison with Canada
+		lineageTag: d0c76584-d8a6-588c-924d-2e0b422eb615
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// Level gap in the indicator's unit. Meaningful for rates (unemployment rate gap in points); for indexes use [YoY Gap vs Canada (pts)] or [Index Gap vs Canada] instead.
+	measure 'Gap vs Canada' = ```
+			VAR _value = [Latest Value]
+			VAR _canada = [Canada Value]
+			RETURN
+			    IF ( NOT ISBLANK ( _value ) && NOT ISBLANK ( _canada ), _value - _canada )
+			```
+		displayFolder: 5 Comparison with Canada
+		lineageTag: fc186157-2dd9-55e3-aa80-994c1d0ef394
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( DimIndicator[Unit] ) = "Percent", "+0.0"" pts"";-0.0"" pts"";0.0"" pts""", "+" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";-" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) & ";" & SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" ) )
+
+	measure 'Canada YoY %' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ),
+			        CALCULATE (
+			            [YoY %],
+			            REMOVEFILTERS ( DimGeography ),
+			            DimGeography[GeographyCode] = "CA",
+			            REMOVEFILTERS ( DimDate ),
+			            DimDate[Date] = _date
+			        )
+			    )
+			```
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 5 Comparison with Canada
+		lineageTag: 080a8de5-b0a5-5183-a13c-dda730959439
+
+	/// Difference between the 12-month change here and in Canada, in percentage points. For the CPI this is the inflation gap.
+	measure 'YoY Gap vs Canada (pts)' = ```
+			VAR _local = [YoY %]
+			VAR _canada = [Canada YoY %]
+			RETURN
+			    IF ( NOT ISBLANK ( _local ) && NOT ISBLANK ( _canada ), ( _local - _canada ) * 100 )
+			```
+		formatString: +0.0" pts";-0.0" pts";0.0" pts"
+		displayFolder: 5 Comparison with Canada
+		lineageTag: 3b389580-e5a5-58d9-85a4-00362c1da867
+
+	measure 'Canada Index (Base = 100)' = ```
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ),
+			        CALCULATE (
+			            [Index (Base = 100)],
+			            REMOVEFILTERS ( DimGeography ),
+			            DimGeography[GeographyCode] = "CA",
+			            REMOVEFILTERS ( DimDate ),
+			            DimDate[Date] = _date
+			        )
+			    )
+			```
+		formatString: 0.0
+		displayFolder: 5 Comparison with Canada
+		lineageTag: 09deccda-3a81-5722-8ff1-0feae507891d
+
+	/// Difference in index points since the base period.
+	measure 'Index Gap vs Canada' = ```
+			VAR _local = [Index (Base = 100)]
+			VAR _canada = [Canada Index (Base = 100)]
+			RETURN
+			    IF ( NOT ISBLANK ( _local ) && NOT ISBLANK ( _canada ), _local - _canada )
+			```
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 5 Comparison with Canada
+		lineageTag: 89e1de4c-1a27-5bc5-acfc-02f20c001d00
+
+	/// Standard error of the estimate, for indicators that publish one.
+	measure 'Standard Error' = ```
+			VAR _code = SELECTEDVALUE ( DimIndicator[StdErrCode] )
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _code ) && NOT ISBLANK ( _date ),
+			        CALCULATE (
+			            [Value],
+			            REMOVEFILTERS ( DimIndicator ),
+			            DimIndicator[IndicatorCode] = _code,
+			            REMOVEFILTERS ( DimDate ),
+			            DimDate[Date] = _date
+			        )
+			    )
+			```
+		displayFolder: 6 Survey precision
+		lineageTag: 9f391fb6-3333-5092-8a6b-08a4b188c6c3
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// Use with [Lower 95% Bound] as error bars on a line chart.
+	measure 'Upper 95% Bound' = ```
+			VAR _value = [Latest Value]
+			VAR _se = [Standard Error]
+			RETURN
+			    IF ( NOT ISBLANK ( _value ) && NOT ISBLANK ( _se ), _value + 1.96 * _se )
+			```
+		displayFolder: 6 Survey precision
+		lineageTag: 2548461d-9556-5b5d-b409-fc7c73fc9d8d
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	measure 'Lower 95% Bound' = ```
+			VAR _value = [Latest Value]
+			VAR _se = [Standard Error]
+			RETURN
+			    IF ( NOT ISBLANK ( _value ) && NOT ISBLANK ( _se ), _value - 1.96 * _se )
+			```
+		displayFolder: 6 Survey precision
+		lineageTag: 756ab9f1-0a34-5e7f-bd06-0cf0cee82819
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// Standard error of the 12-month change, as published.
+	measure 'YoY Standard Error' = ```
+			VAR _code = SELECTEDVALUE ( DimIndicator[StdErrYoYCode] )
+			VAR _date = [Latest Date]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _code ) && NOT ISBLANK ( _date ),
+			        CALCULATE (
+			            [Value],
+			            REMOVEFILTERS ( DimIndicator ),
+			            DimIndicator[IndicatorCode] = _code,
+			            REMOVEFILTERS ( DimDate ),
+			            DimDate[Date] = _date
+			        )
+			    )
+			```
+		displayFolder: 6 Survey precision
+		lineageTag: 4ac08f37-15b2-5b83-bf03-6bb583ab5616
+
+		formatStringDefinition = SELECTEDVALUE ( DimIndicator[FormatString], "#,0.0" )
+
+	/// 1 when the 12-month change exceeds 1.96 standard errors (95% level), 0 when it does not, blank when no standard error is published.
+	measure 'YoY Change Is Significant' = ```
+			VAR _change = [YoY Change]
+			VAR _se = [YoY Standard Error]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _change ) && NOT ISBLANK ( _se ),
+			        IF ( ABS ( _change ) > 1.96 * _se, 1, 0 )
+			    )
+			```
+		formatString: 0
+		displayFolder: 6 Survey precision
+		lineageTag: d417d57e-1060-58f9-9342-f69e7480844b
+
+	/// Tests ISBLANK first because BLANK() = 0 is TRUE in DAX.
+	measure 'YoY Significance Label' = ```
+			VAR _significant = [YoY Change Is Significant]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _significant ),
+			        IF (
+			            _significant = 1,
+			            "Statistically significant (95% level)",
+			            "Within sampling error (95% level)"
+			        )
+			    )
+			```
+		displayFolder: 6 Survey precision
+		lineageTag: 3a97a9d9-42fb-57b7-9652-41d1654c50ae
+
+	/// Share of dwelling units created in multiple-dwelling buildings. Works on any period (month, year, rolling window via the date filter).
+	measure 'Multi-unit Share %' = ```
+			VAR _multi =
+			    CALCULATE (
+			        [Value],
+			        REMOVEFILTERS ( DimIndicator ),
+			        DimIndicator[IndicatorCode] = "BP_UNITS_MULTI"
+			    )
+			VAR _total =
+			    CALCULATE (
+			        [Value],
+			        REMOVEFILTERS ( DimIndicator ),
+			        DimIndicator[IndicatorCode] = "BP_UNITS"
+			    )
+			RETURN
+			    DIVIDE ( _multi, _total )
+			```
+		formatString: 0.0%
+		displayFolder: 7 Housing
+		lineageTag: fdf9e3b7-8d66-5481-bb9c-8f0fff16d423
+
+	/// Dwelling units created by permits in the 12 months to the latest permit month, per 1,000 residents, using the latest July 1 population estimate on or before that month. Puts St. John's, the province and Canada on one scale. Works without an indicator filter: the month is taken from the building permit series, not from whichever indicator was released last.
+	measure 'Units Permitted per 1,000 Residents' = ```
+			VAR _date =
+			    CALCULATE (
+			        MAX ( FactObservation[Date] ),
+			        REMOVEFILTERS ( DimIndicator ),
+			        DimIndicator[IndicatorCode] = "BP_UNITS"
+			    )
+			VAR _units =
+			    CALCULATE (
+			        [12-Month Rolling Total],
+			        REMOVEFILTERS ( DimIndicator ),
+			        DimIndicator[IndicatorCode] = "BP_UNITS",
+			        REMOVEFILTERS ( DimDate ),
+			        DimDate[Date] = _date
+			    )
+			VAR _populationDate =
+			    CALCULATE (
+			        MAX ( FactObservation[Date] ),
+			        REMOVEFILTERS ( DimIndicator ),
+			        DimIndicator[IndicatorCode] = "POP",
+			        REMOVEFILTERS ( DimDate ),
+			        DimDate[Date] <= _date
+			    )
+			VAR _population =
+			    CALCULATE (
+			        [Value],
+			        REMOVEFILTERS ( DimIndicator ),
+			        DimIndicator[IndicatorCode] = "POP",
+			        REMOVEFILTERS ( DimDate ),
+			        DimDate[Date] = _populationDate
+			    )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _date ) && NOT ISBLANK ( _units ) && NOT ISBLANK ( _population ),
+			        DIVIDE ( _units, _population ) * 1000
+			    )
+			```
+		formatString: 0.0
+		displayFolder: 7 Housing
+		lineageTag: 0d5cfba1-bacf-5112-8441-ffccf8966a51
+
+	/// For example "0.7 below Canada (7.2)".
+	measure 'Units per 1,000 vs Canada Label' = ```
+			VAR _local = [Units Permitted per 1,000 Residents]
+			VAR _canada =
+			    CALCULATE (
+			        [Units Permitted per 1,000 Residents],
+			        REMOVEFILTERS ( DimGeography ),
+			        DimGeography[GeographyCode] = "CA"
+			    )
+			VAR _gap = ROUND ( _local - _canada, 1 )
+			VAR _reference = " Canada (" & FORMAT ( _canada, "0.0" ) & ")"
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _local ) || ISBLANK ( _canada ), BLANK (),
+			        SELECTEDVALUE ( DimGeography[GeographyCode] ) = "CA", BLANK (),
+			        _gap > 0, FORMAT ( _gap, "0.0" ) & " above" & _reference,
+			        _gap < 0, FORMAT ( -_gap, "0.0" ) & " below" & _reference,
+			        "Same as" & _reference
+			    )
+			```
+		displayFolder: 7 Housing
+		lineageTag: f5457cdb-121f-5da0-aa00-ff7e94ff1cb2
+
+	/// More permitted units per resident than Canada is treated as favourable.
+	measure 'Units per 1,000 vs Canada Colour' = ```
+			VAR _local = [Units Permitted per 1,000 Residents]
+			VAR _canada =
+			    CALCULATE (
+			        [Units Permitted per 1,000 Residents],
+			        REMOVEFILTERS ( DimGeography ),
+			        DimGeography[GeographyCode] = "CA"
+			    )
+			VAR _gap = ROUND ( _local - _canada, 1 )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _local ) || ISBLANK ( _canada ), BLANK (),
+			        _gap > 0, "#006300",
+			        _gap < 0, "#d03b3b",
+			        "#52514e"
+			    )
+			```
+		displayFolder: 7 Housing
+		lineageTag: fe7492fb-6380-5fa5-9af9-26599c39469a
+
+	/// "12-month change, August 2026": subtitle for cards that show [YoY %].
+	measure 'YoY Period Label' = ```
+			VAR _period = [Latest Period Label]
+			RETURN
+			    IF ( NOT ISBLANK ( _period ), "12-month change, " & _period )
+			```
+		displayFolder: 8 Display
+		lineageTag: bfdd3a92-7186-59af-a7fb-ffc2329a0c9c
+
+	measure 'Change Direction Icon' = ```
+			VAR _change = [YoY Headline Change]
+			VAR _rounded =
+			    IF (
+			        SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+			        ROUND ( _change, 1 ),
+			        ROUND ( _change, 3 )
+			    )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _change ), BLANK (),
+			        _rounded > 0, "▲",
+			        _rounded < 0, "▼",
+			        "■"
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: f2b16088-33c2-578c-9965-33778b2314d3
+
+	/// Favourable / Unfavourable / Neutral, from the indicator's Direction. Labour Force Survey changes that are within sampling error are reported as "Not significant".
+	measure 'YoY Assessment' = ```
+			VAR _change = [YoY Headline Change]
+			VAR _rounded =
+			    IF (
+			        SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+			        ROUND ( _change, 1 ),
+			        ROUND ( _change, 3 )
+			    )
+			VAR _direction = SELECTEDVALUE ( DimIndicator[Direction] )
+			VAR _significant = [YoY Change Is Significant]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _change ), BLANK (),
+			        NOT ISBLANK ( _significant ) && _significant = 0, "Not significant",
+			        _rounded = 0 || _direction = "Neutral", "Neutral",
+			        ( _rounded > 0 && _direction = "Higher is better" )
+			            || ( _rounded < 0 && _direction = "Lower is better" ), "Favourable",
+			        "Unfavourable"
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: 65c934b0-4e78-5311-ad8e-ac16e71a461b
+
+	/// For example "▼ -0.4 pts from Sep 2025 (not significant)".
+	measure 'YoY Delta Label' = ```
+			VAR _change = [YoY Headline Change]
+			VAR _isPoints = SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points"
+			VAR _amount =
+			    IF (
+			        _isPoints,
+			        FORMAT ( _change, "+0.0;-0.0;0.0" ) & " pts",
+			        FORMAT ( _change, "+0.0%;-0.0%;0.0%" )
+			    )
+			VAR _when =
+			    FORMAT (
+			        [Year Ago Date],
+			        IF ( SELECTEDVALUE ( DimIndicator[Frequency] ) = "Annual", "yyyy", "mmm yyyy" )
+			    )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _change ),
+			        [Change Direction Icon] & " " & _amount & " from " & _when
+			            & " (" & LOWER ( [YoY Assessment] ) & ")"
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: 584136a4-c707-54aa-876f-c74d3ea6250d
+
+	measure 'YoY Delta Colour' = ```
+			SWITCH ( [YoY Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
+			```
+		displayFolder: 8 Display
+		lineageTag: ee8fd69a-b5b8-513c-9a64-eb99fe93bcff
+
+	/// Rates: level gap in points. Other indicators: gap between 12-month changes.
+	measure 'Gap vs Canada (Display)' = ```
+			IF (
+			    SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points",
+			    [Gap vs Canada],
+			    [YoY Gap vs Canada (pts)]
+			)
+			```
+		formatString: +0.0" pts";-0.0" pts";0.0" pts"
+		displayFolder: 8 Display
+		lineageTag: de85be6f-bf14-5e68-8aef-47c9bfd2c7a4
+
+	measure 'Gap Assessment' = ```
+			VAR _raw = [Gap vs Canada (Display)]
+			VAR _gap = ROUND ( _raw, 1 )
+			VAR _direction = SELECTEDVALUE ( DimIndicator[Direction] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _raw ), BLANK (),
+			        _gap = 0 || _direction = "Neutral", "Neutral",
+			        ( _gap > 0 && _direction = "Higher is better" )
+			            || ( _gap < 0 && _direction = "Lower is better" ), "Favourable",
+			        "Unfavourable"
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: b1283b35-5f7d-57e0-9190-e97c1dc362db
+
+	/// For example "1.3 pts above Canada (12-month change)".
+	measure 'Gap vs Canada Label' = ```
+			VAR _raw = [Gap vs Canada (Display)]
+			VAR _gap = ROUND ( _raw, 1 )
+			VAR _suffix =
+			    IF ( SELECTEDVALUE ( DimIndicator[ChangeType] ) = "Points", "", " (12-month change)" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _raw ), BLANK (),
+			        SELECTEDVALUE ( DimGeography[GeographyCode] ) = "CA", BLANK (),
+			        _gap > 0, FORMAT ( _gap, "0.0" ) & " pts above Canada" & _suffix,
+			        _gap < 0, FORMAT ( -_gap, "0.0" ) & " pts below Canada" & _suffix,
+			        "Same as Canada" & _suffix
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: c8173443-039c-592c-92e2-0829ca8c7768
+
+	measure 'Gap Colour' = ```
+			SWITCH ( [Gap Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
+			```
+		displayFolder: 8 Display
+		lineageTag: 9e91ec13-62d2-5afb-b730-d834718f2c58
+
+	measure 'Rolling 12-Month Assessment' = ```
+			VAR _raw = [12-Month Rolling Total YoY %]
+			VAR _change = ROUND ( _raw, 3 )
+			VAR _direction = SELECTEDVALUE ( DimIndicator[Direction] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _raw ), BLANK (),
+			        _change = 0 || _direction = "Neutral", "Neutral",
+			        ( _change > 0 && _direction = "Higher is better" )
+			            || ( _change < 0 && _direction = "Lower is better" ), "Favourable",
+			        "Unfavourable"
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: 270e38dc-b5d6-538b-a122-0de0afc28d2d
+
+	/// For example "▲ +22.2% vs previous 12 months (favourable)".
+	measure 'Rolling 12-Month Delta Label' = ```
+			VAR _raw = [12-Month Rolling Total YoY %]
+			VAR _change = ROUND ( _raw, 3 )
+			VAR _icon =
+			    SWITCH ( TRUE (), _change > 0, "▲", _change < 0, "▼", "■" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _raw ),
+			        _icon & " " & FORMAT ( _raw, "+0.0%;-0.0%;0.0%" ) & " vs previous 12 months ("
+			            & LOWER ( [Rolling 12-Month Assessment] ) & ")"
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: 92171d52-0961-52fe-b9bf-b1a9d4800829
+
+	measure 'Rolling 12-Month Delta Colour' = ```
+			SWITCH ( [Rolling 12-Month Assessment], "Favourable", "#006300", "Unfavourable", "#d03b3b", "#52514e" )
+			```
+		displayFolder: 8 Display
+		lineageTag: e0ee4210-a7ed-589f-9b7c-b7e1703568a8
+
+	/// Keeps each geography's colour fixed when filters change.
+	measure 'Geography Colour' = ```
+			SELECTEDVALUE ( DimGeography[ColourHex] )
+			```
+		displayFolder: 8 Display
+		lineageTag: b1950925-fdb0-501b-a44d-e043d14f6bff
+
+	measure 'Index Chart Title' = ```
+			SELECTEDVALUE ( DimIndicator[ShortName], "Selected indicator" ) & ", indexed to "
+			    & SELECTEDVALUE ( BasePeriod[BaseLabel], "Jan 2018" ) & " = 100"
+			```
+		displayFolder: 8 Display
+		lineageTag: 9eb238d2-27ab-57cb-92ad-2f9a59ab8723
+
+	/// Statistics Canada Open Licence notice for adapted products, with the tables behind the current visual and its latest reference period.
+	measure 'Source Note' = ```
+			VAR _tables = CALCULATETABLE ( VALUES ( DimSeries[TableId] ), FactObservation )
+			VAR _list = CONCATENATEX ( _tables, DimSeries[TableId], ", ", DimSeries[TableId], ASC )
+			VAR _label = IF ( COUNTROWS ( _tables ) > 1, "tables ", "table " )
+			RETURN
+			    IF (
+			        COUNTROWS ( _tables ) > 0,
+			        "Adapted from Statistics Canada, " & _label & _list & ", data to "
+			            & FORMAT ( [Latest Date], "mmmm yyyy" )
+			            & ". This does not constitute an endorsement by Statistics Canada of this product."
+			    )
+			```
+		displayFolder: 8 Display
+		lineageTag: 65877915-650d-5b13-9b68-32808152cccd
+
+	measure 'Caution Note' = ```
+			VAR _flagged = CALCULATE ( COUNTROWS ( FactObservation ), FactObservation[Status] = "E" )
+			RETURN
+			    IF ( _flagged > 0, "Includes values flagged E (use with caution) by Statistics Canada." )
+			```
+		displayFolder: 8 Display
+		lineageTag: 4f90fd43-c114-507d-a2c4-ffb193717d4b
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 18e0521d-abbd-5afc-87eb-05560655d1e7
+		summarizeBy: none
+		sourceColumn: Placeholder
+
+		annotation SummarizationSetBy = User
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Placeholder = text], {})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,47 @@
+table BasePeriod
+	lineageTag: 39369b9c-0acd-5be2-a123-9c54a83c741b
+
+	column BaseDate
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: d082b72a-fa4b-5ebf-92b5-34ef36db5429
+		summarizeBy: none
+		sourceColumn: BaseDate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BaseLabel
+		dataType: string
+		lineageTag: 230329a1-c630-5f63-b6dc-5d0dcb446952
+		summarizeBy: none
+		sourceColumn: BaseLabel
+		sortByColumn: BaseSort
+
+		annotation SummarizationSetBy = User
+
+	column BaseSort
+		dataType: int64
+		formatString: 0
+		lineageTag: da5c63c4-4611-5afb-8bf5-479402d4f8d3
+		summarizeBy: none
+		sourceColumn: BaseSort
+
+		annotation SummarizationSetBy = User
+
+	partition BasePeriod = m
+		mode: import
+		source =
+				let
+				    LastFactDate = List.Max(FactObservation[Date]),
+				    MonthStarts = Table.SelectRows(DimDate, each [IsMonthStart] = true and [Date] <= LastFactDate),
+				    Kept = Table.SelectColumns(MonthStarts, {"Date", "MonthLabel", "MonthSort"}),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {{"Date", "BaseDate"}, {"MonthLabel", "BaseLabel"}, {"MonthSort", "BaseSort"}}
+				    )
+				in
+				    Renamed
+
+	annotation PBI_ResultType = Table

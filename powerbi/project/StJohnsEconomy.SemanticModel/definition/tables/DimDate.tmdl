@@ -1,0 +1,160 @@
+table DimDate
+	lineageTag: 10502bec-28fb-5a3a-9b54-11a280dbbe5d
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: d4b39d86-eac0-5317-9f4b-544c1f66ded8
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: edbcbc60-c8b9-5c03-8abc-aa0e1195ff5a
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 9aeeec18-b20d-50c7-8cb0-aab868be0570
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = User
+
+	column QuarterLabel
+		dataType: string
+		lineageTag: d52b0c26-afbf-5574-a6e5-d7607d5f67b6
+		summarizeBy: none
+		sourceColumn: QuarterLabel
+
+		annotation SummarizationSetBy = User
+
+	column YearQuarter
+		dataType: string
+		lineageTag: 82762403-721c-5eb0-8ad0-0fd6443f0b52
+		summarizeBy: none
+		sourceColumn: YearQuarter
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: cefab555-fe4c-5670-aab8-1309ce6533a0
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column MonthName
+		dataType: string
+		lineageTag: dcfd0368-9d2f-51dd-b49c-1d5756f2085a
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column MonthShort
+		dataType: string
+		lineageTag: 9d45397c-5971-50aa-82f3-dba6610168bd
+		summarizeBy: none
+		sourceColumn: MonthShort
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column MonthStart
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: da40abcb-5ec6-54c5-a178-aa53f70d3834
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MonthLabel
+		dataType: string
+		lineageTag: ff48cc84-e567-5188-bee0-3974e8cde332
+		summarizeBy: none
+		sourceColumn: MonthLabel
+		sortByColumn: MonthSort
+
+		annotation SummarizationSetBy = User
+
+	column YearMonth
+		dataType: string
+		lineageTag: 0c965174-9679-59d9-b4da-3aaedb815354
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = User
+
+	column MonthSort
+		dataType: int64
+		formatString: 0
+		lineageTag: e61ac39d-0356-5a92-9311-bbec5c2f82f8
+		summarizeBy: none
+		sourceColumn: MonthSort
+
+		annotation SummarizationSetBy = User
+
+	column MonthIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: ed60999c-4846-5009-b0b3-249fab8b6117
+		summarizeBy: none
+		sourceColumn: MonthIndex
+
+		annotation SummarizationSetBy = User
+
+	column IsMonthStart
+		dataType: boolean
+		lineageTag: dd937f0a-0424-5238-be5f-98ddaaf5a314
+		summarizeBy: none
+		sourceColumn: IsMonthStart
+
+		annotation SummarizationSetBy = User
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("DimDate.csv"),
+				    Typed = Table.TransformColumnTypes(
+				        Source,
+				        {
+				            {"Date", type date},
+				            {"Year", Int64.Type},
+				            {"Quarter", Int64.Type},
+				            {"QuarterLabel", type text},
+				            {"YearQuarter", type text},
+				            {"Month", Int64.Type},
+				            {"MonthName", type text},
+				            {"MonthShort", type text},
+				            {"MonthStart", type date},
+				            {"MonthLabel", type text},
+				            {"YearMonth", type text},
+				            {"MonthSort", Int64.Type},
+				            {"MonthIndex", Int64.Type},
+				            {"IsMonthStart", type logical}
+				        },
+				        "en-CA"
+				    )
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

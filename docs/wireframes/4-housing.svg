@@ -35,165 +35,165 @@
 <text x="874" y="108" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="end">▾</text>
 <circle cx="882" cy="86" r="9" fill="#cde2fb"/>
 <text x="882" y="90" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">4</text>
-<rect x="24" y="132" width="296" height="100" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<rect x="24" y="132" width="296" height="112" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
 <text x="38" y="154" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Dwelling units permitted, last 12 months</text>
 <text x="38" y="169" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
-<text x="38" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">0,000</text>
-<text x="104" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[12-Month Rolling Total]</text>
-<text x="38" y="220" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Rolling 12-Month Delta Label]</text>
+<text x="38" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">0,000</text>
+<text x="104" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[12-Month Rolling Total]</text>
+<text x="38" y="232" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Rolling 12-Month Delta Label]</text>
 <circle cx="306" cy="146" r="9" fill="#cde2fb"/>
 <text x="306" y="150" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">5</text>
-<rect x="336" y="132" width="296" height="100" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<rect x="336" y="132" width="296" height="112" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
 <text x="350" y="154" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Units permitted per 1,000 residents</text>
 <text x="350" y="169" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Last 12 months of building permits</text>
-<text x="350" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">0.0</text>
-<text x="392" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Units Permitted per 1,000 Residents]</text>
-<text x="350" y="220" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Units per 1,000 vs Canada Label]</text>
+<text x="350" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">0.0</text>
+<text x="392" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Units Permitted per 1,000 Residents]</text>
+<text x="350" y="232" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Units per 1,000 vs Canada Label]</text>
 <circle cx="618" cy="146" r="9" fill="#cde2fb"/>
 <text x="618" y="150" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">6</text>
-<rect x="648" y="132" width="296" height="100" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<rect x="648" y="132" width="296" height="112" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
 <text x="662" y="154" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">Population, July 1</text>
 <text x="662" y="169" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
-<text x="662" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">00.0</text>
-<text x="716" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Latest Value]</text>
-<text x="662" y="220" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [YoY Delta Label]</text>
+<text x="662" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">00.0</text>
+<text x="716" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[Latest Value]</text>
+<text x="662" y="232" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [YoY Delta Label]</text>
 <circle cx="930" cy="146" r="9" fill="#cde2fb"/>
 <text x="930" y="150" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">7</text>
-<rect x="960" y="132" width="296" height="100" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
-<text x="974" y="154" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">New housing prices, 12-month change</text>
-<text x="974" y="169" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[Latest Period Label]</text>
-<text x="974" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">+0.0%</text>
-<text x="1040" y="202" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[YoY %]</text>
-<text x="974" y="220" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Gap vs Canada Label]</text>
+<rect x="960" y="132" width="296" height="112" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="974" y="154" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#0b0b0b" text-anchor="start">New housing prices</text>
+<text x="974" y="169" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">[YoY Period Label]</text>
+<text x="974" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="start">+0.0%</text>
+<text x="1040" y="214" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#898781" text-anchor="start">[YoY %]</text>
+<text x="974" y="232" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">▲ [Gap vs Canada Label]</text>
 <circle cx="1242" cy="146" r="9" fill="#cde2fb"/>
 <text x="1242" y="150" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">8</text>
-<rect x="24" y="244" width="296" height="424" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
-<text x="38" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Dwelling units permitted per year, St.</text>
-<text x="38" y="282" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">John's</text>
-<text x="38" y="298" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">Calendar years; the latest year is partial</text>
-<rect x="38" y="315" width="14" height="3" rx="1.5" fill="#6da7ec"/>
-<text x="56" y="322" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Single dwellings</text>
-<rect x="147" y="315" width="14" height="3" rx="1.5" fill="#184f95"/>
-<text x="165" y="322" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Multiple dwellings</text>
+<rect x="24" y="256" width="296" height="412" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="38" y="278" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Dwelling units permitted per year, St.</text>
+<text x="38" y="294" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">John's</text>
+<text x="38" y="310" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">Calendar years; the latest year is partial</text>
+<rect x="38" y="327" width="14" height="3" rx="1.5" fill="#6da7ec"/>
+<text x="56" y="334" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Single dwellings</text>
+<rect x="147" y="327" width="14" height="3" rx="1.5" fill="#184f95"/>
+<text x="165" y="334" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Multiple dwellings</text>
 <line x1="64" y1="628" x2="296" y2="628" stroke="#c3c2b7" stroke-width="1"/>
 <text x="76.88888888888889" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2018</text>
-<rect x="69.2" y="597.1" width="15.5" height="28.9" rx="2" fill="#6da7ec"/>
-<rect x="69.2" y="473.6" width="15.5" height="121.6" rx="2" fill="#184f95"/>
+<rect x="69.2" y="598.4" width="15.5" height="27.6" rx="2" fill="#6da7ec"/>
+<rect x="69.2" y="480.0" width="15.5" height="116.4" rx="2" fill="#184f95"/>
 <text x="102.66666666666666" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2019</text>
-<rect x="94.9" y="580.0" width="15.5" height="46.0" rx="2" fill="#6da7ec"/>
-<rect x="94.9" y="533.6" width="15.5" height="44.3" rx="2" fill="#184f95"/>
+<rect x="94.9" y="582.0" width="15.5" height="44.0" rx="2" fill="#6da7ec"/>
+<rect x="94.9" y="537.6" width="15.5" height="42.4" rx="2" fill="#184f95"/>
 <text x="128.44444444444446" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2020</text>
-<rect x="120.7" y="562.8" width="15.5" height="63.2" rx="2" fill="#6da7ec"/>
-<rect x="120.7" y="490.7" width="15.5" height="70.1" rx="2" fill="#184f95"/>
+<rect x="120.7" y="565.5" width="15.5" height="60.5" rx="2" fill="#6da7ec"/>
+<rect x="120.7" y="496.5" width="15.5" height="67.0" rx="2" fill="#184f95"/>
 <text x="154.22222222222223" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2021</text>
-<rect x="146.5" y="545.6" width="15.5" height="80.4" rx="2" fill="#6da7ec"/>
-<rect x="146.5" y="447.8" width="15.5" height="95.8" rx="2" fill="#184f95"/>
+<rect x="146.5" y="549.1" width="15.5" height="76.9" rx="2" fill="#6da7ec"/>
+<rect x="146.5" y="455.4" width="15.5" height="91.7" rx="2" fill="#184f95"/>
 <text x="180.0" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2022</text>
-<rect x="172.3" y="597.1" width="15.5" height="28.9" rx="2" fill="#6da7ec"/>
-<rect x="172.3" y="473.6" width="15.5" height="121.6" rx="2" fill="#184f95"/>
+<rect x="172.3" y="598.4" width="15.5" height="27.6" rx="2" fill="#6da7ec"/>
+<rect x="172.3" y="480.0" width="15.5" height="116.4" rx="2" fill="#184f95"/>
 <text x="205.77777777777777" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2023</text>
-<rect x="198.0" y="580.0" width="15.5" height="46.0" rx="2" fill="#6da7ec"/>
-<rect x="198.0" y="533.6" width="15.5" height="44.3" rx="2" fill="#184f95"/>
+<rect x="198.0" y="582.0" width="15.5" height="44.0" rx="2" fill="#6da7ec"/>
+<rect x="198.0" y="537.6" width="15.5" height="42.4" rx="2" fill="#184f95"/>
 <text x="231.55555555555557" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2024</text>
-<rect x="223.8" y="562.8" width="15.5" height="63.2" rx="2" fill="#6da7ec"/>
-<rect x="223.8" y="490.7" width="15.5" height="70.1" rx="2" fill="#184f95"/>
+<rect x="223.8" y="565.5" width="15.5" height="60.5" rx="2" fill="#6da7ec"/>
+<rect x="223.8" y="496.5" width="15.5" height="67.0" rx="2" fill="#184f95"/>
 <text x="257.33333333333337" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2025</text>
-<rect x="249.6" y="545.6" width="15.5" height="80.4" rx="2" fill="#6da7ec"/>
-<rect x="249.6" y="447.8" width="15.5" height="95.8" rx="2" fill="#184f95"/>
+<rect x="249.6" y="549.1" width="15.5" height="76.9" rx="2" fill="#6da7ec"/>
+<rect x="249.6" y="455.4" width="15.5" height="91.7" rx="2" fill="#184f95"/>
 <text x="283.11111111111114" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2026</text>
-<rect x="275.4" y="597.1" width="15.5" height="28.9" rx="2" fill="#6da7ec"/>
-<rect x="275.4" y="473.6" width="15.5" height="121.6" rx="2" fill="#184f95"/>
-<circle cx="306" cy="258" r="9" fill="#cde2fb"/>
-<text x="306" y="262" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">10</text>
-<rect x="336" y="244" width="296" height="424" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
-<text x="350" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Units permitted per 1,000 residents</text>
-<text x="350" y="282" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">Rolling 12-month total of permitted units</text>
-<rect x="350" y="299" width="14" height="3" rx="1.5" fill="#2a78d6"/>
-<text x="368" y="306" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
-<rect x="428" y="299" width="14" height="3" rx="1.5" fill="#eb6834"/>
-<text x="446" y="306" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
-<rect x="485" y="299" width="14" height="3" rx="1.5" fill="#1baf7a"/>
-<text x="503" y="306" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">N.L.</text>
-<line x1="376" y1="326.0" x2="568" y2="326.0" stroke="#e1e0d9" stroke-width="1"/>
-<line x1="376" y1="430.7" x2="568" y2="430.7" stroke="#e1e0d9" stroke-width="1"/>
-<line x1="376" y1="535.3" x2="568" y2="535.3" stroke="#e1e0d9" stroke-width="1"/>
+<rect x="275.4" y="598.4" width="15.5" height="27.6" rx="2" fill="#6da7ec"/>
+<rect x="275.4" y="480.0" width="15.5" height="116.4" rx="2" fill="#184f95"/>
+<circle cx="306" cy="270" r="9" fill="#cde2fb"/>
+<text x="306" y="274" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">10</text>
+<rect x="336" y="256" width="296" height="412" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="350" y="278" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Units permitted per 1,000 residents</text>
+<text x="350" y="294" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">Rolling 12-month total of permitted units</text>
+<rect x="350" y="311" width="14" height="3" rx="1.5" fill="#2a78d6"/>
+<text x="368" y="318" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
+<rect x="428" y="311" width="14" height="3" rx="1.5" fill="#eb6834"/>
+<text x="446" y="318" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
+<rect x="485" y="311" width="14" height="3" rx="1.5" fill="#1baf7a"/>
+<text x="503" y="318" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">N.L.</text>
+<line x1="376" y1="338.0" x2="568" y2="338.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="376" y1="438.7" x2="568" y2="438.7" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="376" y1="539.3" x2="568" y2="539.3" stroke="#e1e0d9" stroke-width="1"/>
 <line x1="376" y1="640.0" x2="568" y2="640.0" stroke="#e1e0d9" stroke-width="1"/>
 <line x1="376" y1="640" x2="568" y2="640" stroke="#c3c2b7" stroke-width="1"/>
-<polyline points="376.0,467.3 380.8,470.3 385.6,473.2 390.4,476.0 395.2,478.6 400.0,481.0 404.8,483.1 409.6,484.8 414.4,486.2 419.2,487.2 424.0,487.7 428.8,487.7 433.6,487.3 438.4,486.4 443.2,485.0 448.0,483.1 452.8,480.8 457.6,478.0 462.4,474.8 467.2,471.2 472.0,467.3 476.8,463.0 481.6,458.6 486.4,453.9 491.2,449.1 496.0,444.3 500.8,439.4 505.6,434.6 510.4,429.9 515.2,425.4 520.0,421.1 524.8,417.1 529.6,413.4 534.4,410.1 539.2,407.2 544.0,404.7 548.8,402.7 553.6,401.2 558.4,400.1 563.2,399.6 568.0,399.5" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="574.0" y="402.50977777557745" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">St. John's</text>
-<polyline points="376.0,543.1 380.8,543.4 385.6,543.3 390.4,542.9 395.2,542.0 400.0,540.8 404.8,539.2 409.6,537.2 414.4,534.8 419.2,532.1 424.0,529.1 428.8,525.8 433.6,522.3 438.4,518.6 443.2,514.7 448.0,510.7 452.8,506.7 457.6,502.6 462.4,498.5 467.2,494.6 472.0,490.7 476.8,487.1 481.6,483.6 486.4,480.4 491.2,477.5 496.0,474.9 500.8,472.7 505.6,470.8 510.4,469.3 515.2,468.2 520.0,467.5 524.8,467.2 529.6,467.3 534.4,467.7 539.2,468.5 544.0,469.5 548.8,470.9 553.6,472.5 558.4,474.3 563.2,476.3 568.0,478.4" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="574.0" y="481.424077892685" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">Canada</text>
-<polyline points="376.0,591.2 380.8,588.6 385.6,585.8 390.4,582.8 395.2,579.7 400.0,576.5 404.8,573.3 409.6,570.0 414.4,566.7 419.2,563.5 424.0,560.3 428.8,557.3 433.6,554.4 438.4,551.7 443.2,549.2 448.0,546.9 452.8,544.9 457.6,543.1 462.4,541.7 467.2,540.5 472.0,539.6 476.8,539.0 481.6,538.7 486.4,538.7 491.2,538.9 496.0,539.4 500.8,540.1 505.6,541.0 510.4,542.1 515.2,543.3 520.0,544.6 524.8,546.0 529.6,547.4 534.4,548.8 539.2,550.1 544.0,551.4 548.8,552.6 553.6,553.6 558.4,554.5 563.2,555.1 568.0,555.5" fill="none" stroke="#1baf7a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="574.0" y="558.5422259326422" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">N.L.</text>
-<circle cx="618" cy="258" r="9" fill="#cde2fb"/>
-<text x="618" y="262" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">11</text>
-<rect x="648" y="244" width="296" height="424" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
-<text x="662" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">New housing prices, indexed (dynamic</text>
-<text x="662" y="282" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">title)</text>
-<text x="662" y="298" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">House and land; 100 in the base month</text>
-<rect x="662" y="315" width="14" height="3" rx="1.5" fill="#2a78d6"/>
-<text x="680" y="322" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
-<rect x="740" y="315" width="14" height="3" rx="1.5" fill="#eb6834"/>
-<text x="758" y="322" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
-<line x1="688" y1="342.0" x2="880" y2="342.0" stroke="#e1e0d9" stroke-width="1"/>
-<line x1="688" y1="441.3" x2="880" y2="441.3" stroke="#e1e0d9" stroke-width="1"/>
-<line x1="688" y1="540.7" x2="880" y2="540.7" stroke="#e1e0d9" stroke-width="1"/>
+<polyline points="376.0,473.9 380.8,476.8 385.6,479.6 390.4,482.2 395.2,484.8 400.0,487.0 404.8,489.0 409.6,490.7 414.4,492.1 419.2,493.0 424.0,493.5 428.8,493.6 433.6,493.2 438.4,492.3 443.2,490.9 448.0,489.1 452.8,486.9 457.6,484.2 462.4,481.1 467.2,477.6 472.0,473.9 476.8,469.8 481.6,465.5 486.4,461.0 491.2,456.4 496.0,451.8 500.8,447.1 505.6,442.5 510.4,437.9 515.2,433.6 520.0,429.5 524.8,425.6 529.6,422.1 534.4,418.9 539.2,416.1 544.0,413.7 548.8,411.8 553.6,410.3 558.4,409.3 563.2,408.8 568.0,408.7" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="574.0" y="411.70048690517325" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">St. John's</text>
+<polyline points="376.0,546.8 380.8,547.1 385.6,547.0 390.4,546.6 395.2,545.8 400.0,544.6 404.8,543.0 409.6,541.1 414.4,538.8 419.2,536.3 424.0,533.4 428.8,530.2 433.6,526.8 438.4,523.2 443.2,519.5 448.0,515.7 452.8,511.7 457.6,507.8 462.4,503.9 467.2,500.1 472.0,496.4 476.8,492.9 481.6,489.6 486.4,486.5 491.2,483.7 496.0,481.2 500.8,479.1 505.6,477.3 510.4,475.9 515.2,474.8 520.0,474.1 524.8,473.8 529.6,473.9 534.4,474.3 539.2,475.0 544.0,476.1 548.8,477.4 553.6,478.9 558.4,480.7 563.2,482.6 568.0,484.6" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="574.0" y="487.59895389678616" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">Canada</text>
+<polyline points="376.0,593.1 380.8,590.6 385.6,587.9 390.4,585.0 395.2,582.0 400.0,579.0 404.8,575.8 409.6,572.7 414.4,569.5 419.2,566.4 424.0,563.3 428.8,560.4 433.6,557.6 438.4,555.0 443.2,552.6 448.0,550.4 452.8,548.5 457.6,546.8 462.4,545.4 467.2,544.3 472.0,543.4 476.8,542.9 481.6,542.6 486.4,542.5 491.2,542.8 496.0,543.2 500.8,543.9 505.6,544.8 510.4,545.8 515.2,547.0 520.0,548.2 524.8,549.6 529.6,550.9 534.4,552.3 539.2,553.6 544.0,554.8 548.8,555.9 553.6,556.9 558.4,557.7 563.2,558.4 568.0,558.8" fill="none" stroke="#1baf7a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="574.0" y="561.7699115657896" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">N.L.</text>
+<circle cx="618" cy="270" r="9" fill="#cde2fb"/>
+<text x="618" y="274" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">11</text>
+<rect x="648" y="256" width="296" height="412" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="662" y="278" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">New housing prices, indexed (dynamic</text>
+<text x="662" y="294" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">title)</text>
+<text x="662" y="310" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">House and land; 100 in the base month</text>
+<rect x="662" y="327" width="14" height="3" rx="1.5" fill="#2a78d6"/>
+<text x="680" y="334" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
+<rect x="740" y="327" width="14" height="3" rx="1.5" fill="#eb6834"/>
+<text x="758" y="334" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
+<line x1="688" y1="354.0" x2="880" y2="354.0" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="688" y1="449.3" x2="880" y2="449.3" stroke="#e1e0d9" stroke-width="1"/>
+<line x1="688" y1="544.7" x2="880" y2="544.7" stroke="#e1e0d9" stroke-width="1"/>
 <line x1="688" y1="640.0" x2="880" y2="640.0" stroke="#e1e0d9" stroke-width="1"/>
 <line x1="688" y1="640" x2="880" y2="640" stroke="#c3c2b7" stroke-width="1"/>
-<polyline points="688.0,476.1 692.8,478.9 697.6,481.7 702.4,484.3 707.2,486.8 712.0,489.1 716.8,491.0 721.6,492.7 726.4,494.0 731.2,494.9 736.0,495.4 740.8,495.5 745.6,495.1 750.4,494.2 755.2,492.9 760.0,491.1 764.8,488.9 769.6,486.2 774.4,483.2 779.2,479.8 784.0,476.1 788.8,472.0 793.6,467.8 798.4,463.4 803.2,458.8 808.0,454.2 812.8,449.6 817.6,445.1 822.4,440.6 827.2,436.3 832.0,432.2 836.8,428.4 841.6,424.9 846.4,421.8 851.2,419.0 856.0,416.7 860.8,414.8 865.6,413.3 870.4,412.3 875.2,411.8 880.0,411.8" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="886.0" y="414.7640566150385" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">St. John's</text>
-<polyline points="688.0,548.0 692.8,548.3 697.6,548.2 702.4,547.8 707.2,547.0 712.0,545.8 716.8,544.3 721.6,542.4 726.4,540.2 731.2,537.6 736.0,534.8 740.8,531.7 745.6,528.3 750.4,524.8 755.2,521.1 760.0,517.3 764.8,513.4 769.6,509.6 774.4,505.7 779.2,502.0 784.0,498.3 788.8,494.9 793.6,491.6 798.4,488.6 803.2,485.8 808.0,483.3 812.8,481.2 817.6,479.5 822.4,478.0 827.2,477.0 832.0,476.3 836.8,476.0 841.6,476.1 846.4,476.5 851.2,477.2 856.0,478.2 860.8,479.5 865.6,481.1 870.4,482.8 875.2,484.7 880.0,486.7" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="886.0" y="489.65724589815323" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">Canada</text>
-<circle cx="930" cy="258" r="9" fill="#cde2fb"/>
-<text x="930" y="262" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">12</text>
-<rect x="960" y="244" width="296" height="424" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
-<text x="974" y="266" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Population growth, year over year</text>
-<text x="974" y="282" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">July 1 estimates</text>
-<rect x="974" y="299" width="14" height="3" rx="1.5" fill="#2a78d6"/>
-<text x="992" y="306" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
-<rect x="1052" y="299" width="14" height="3" rx="1.5" fill="#eb6834"/>
-<text x="1070" y="306" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
-<rect x="1109" y="299" width="14" height="3" rx="1.5" fill="#1baf7a"/>
-<text x="1127" y="306" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">N.L.</text>
+<polyline points="688.0,482.7 692.8,485.4 697.6,488.1 702.4,490.6 707.2,493.0 712.0,495.1 716.8,497.0 721.6,498.6 726.4,499.9 731.2,500.8 736.0,501.3 740.8,501.3 745.6,500.9 750.4,500.1 755.2,498.8 760.0,497.1 764.8,495.0 769.6,492.4 774.4,489.5 779.2,486.2 784.0,482.7 788.8,478.8 793.6,474.7 798.4,470.5 803.2,466.1 808.0,461.7 812.8,457.3 817.6,452.9 822.4,448.6 827.2,444.5 832.0,440.6 836.8,437.0 841.6,433.6 846.4,430.6 851.2,427.9 856.0,425.7 860.8,423.9 865.6,422.5 870.4,421.5 875.2,421.0 880.0,421.0" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="886.0" y="423.95476574463424" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">St. John's</text>
+<polyline points="688.0,551.7 692.8,552.0 697.6,551.9 702.4,551.5 707.2,550.8 712.0,549.6 716.8,548.2 721.6,546.4 726.4,544.2 731.2,541.8 736.0,539.0 740.8,536.0 745.6,532.8 750.4,529.4 755.2,525.9 760.0,522.2 764.8,518.5 769.6,514.8 774.4,511.1 779.2,507.5 784.0,504.0 788.8,500.7 793.6,497.6 798.4,494.6 803.2,492.0 808.0,489.7 812.8,487.6 817.6,485.9 822.4,484.6 827.2,483.6 832.0,482.9 836.8,482.6 841.6,482.7 846.4,483.1 851.2,483.8 856.0,484.7 860.8,486.0 865.6,487.5 870.4,489.1 875.2,490.9 880.0,492.8" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="886.0" y="495.83212190225447" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#0b0b0b" text-anchor="start">Canada</text>
+<circle cx="930" cy="270" r="9" fill="#cde2fb"/>
+<text x="930" y="274" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">12</text>
+<rect x="960" y="256" width="296" height="412" rx="6" fill="#fcfcfb" stroke="#e1e0d9"/>
+<text x="974" y="278" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#0b0b0b" text-anchor="start">Population growth, year over year</text>
+<text x="974" y="294" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#52514e" text-anchor="start">July 1 estimates</text>
+<rect x="974" y="311" width="14" height="3" rx="1.5" fill="#2a78d6"/>
+<text x="992" y="318" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">St. John's</text>
+<rect x="1052" y="311" width="14" height="3" rx="1.5" fill="#eb6834"/>
+<text x="1070" y="318" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Canada</text>
+<rect x="1109" y="311" width="14" height="3" rx="1.5" fill="#1baf7a"/>
+<text x="1127" y="318" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">N.L.</text>
 <line x1="1000" y1="628" x2="1232" y2="628" stroke="#c3c2b7" stroke-width="1"/>
 <text x="1012.8888888888889" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2018</text>
-<rect x="1002.0" y="567.6" width="6.4" height="60.4" rx="2" fill="#2a78d6"/>
-<rect x="1010.4" y="531.4" width="6.4" height="96.6" rx="2" fill="#eb6834"/>
-<rect x="1018.9" y="495.1" width="6.4" height="132.9" rx="2" fill="#1baf7a"/>
+<rect x="1002.0" y="570.0" width="6.4" height="58.0" rx="2" fill="#2a78d6"/>
+<rect x="1010.4" y="535.2" width="6.4" height="92.8" rx="2" fill="#eb6834"/>
+<rect x="1018.9" y="500.4" width="6.4" height="127.6" rx="2" fill="#1baf7a"/>
 <text x="1038.6666666666667" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2019</text>
-<rect x="1027.8" y="495.1" width="6.4" height="132.9" rx="2" fill="#2a78d6"/>
-<rect x="1036.2" y="458.9" width="6.4" height="169.1" rx="2" fill="#eb6834"/>
-<rect x="1044.7" y="422.6" width="6.4" height="205.4" rx="2" fill="#1baf7a"/>
+<rect x="1027.8" y="500.4" width="6.4" height="127.6" rx="2" fill="#2a78d6"/>
+<rect x="1036.2" y="465.6" width="6.4" height="162.4" rx="2" fill="#eb6834"/>
+<rect x="1044.7" y="430.8" width="6.4" height="197.2" rx="2" fill="#1baf7a"/>
 <text x="1064.4444444444446" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2020</text>
-<rect x="1053.6" y="422.6" width="6.4" height="205.4" rx="2" fill="#2a78d6"/>
-<rect x="1062.0" y="567.6" width="6.4" height="60.4" rx="2" fill="#eb6834"/>
-<rect x="1070.4" y="531.4" width="6.4" height="96.6" rx="2" fill="#1baf7a"/>
+<rect x="1053.6" y="430.8" width="6.4" height="197.2" rx="2" fill="#2a78d6"/>
+<rect x="1062.0" y="570.0" width="6.4" height="58.0" rx="2" fill="#eb6834"/>
+<rect x="1070.4" y="535.2" width="6.4" height="92.8" rx="2" fill="#1baf7a"/>
 <text x="1090.2222222222222" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2021</text>
-<rect x="1079.3" y="531.4" width="6.4" height="96.6" rx="2" fill="#2a78d6"/>
-<rect x="1087.8" y="495.1" width="6.4" height="132.9" rx="2" fill="#eb6834"/>
-<rect x="1096.2" y="458.9" width="6.4" height="169.1" rx="2" fill="#1baf7a"/>
+<rect x="1079.3" y="535.2" width="6.4" height="92.8" rx="2" fill="#2a78d6"/>
+<rect x="1087.8" y="500.4" width="6.4" height="127.6" rx="2" fill="#eb6834"/>
+<rect x="1096.2" y="465.6" width="6.4" height="162.4" rx="2" fill="#1baf7a"/>
 <text x="1116.0" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2022</text>
-<rect x="1105.1" y="458.9" width="6.4" height="169.1" rx="2" fill="#2a78d6"/>
-<rect x="1113.6" y="422.6" width="6.4" height="205.4" rx="2" fill="#eb6834"/>
-<rect x="1122.0" y="567.6" width="6.4" height="60.4" rx="2" fill="#1baf7a"/>
+<rect x="1105.1" y="465.6" width="6.4" height="162.4" rx="2" fill="#2a78d6"/>
+<rect x="1113.6" y="430.8" width="6.4" height="197.2" rx="2" fill="#eb6834"/>
+<rect x="1122.0" y="570.0" width="6.4" height="58.0" rx="2" fill="#1baf7a"/>
 <text x="1141.7777777777778" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2023</text>
-<rect x="1130.9" y="567.6" width="6.4" height="60.4" rx="2" fill="#2a78d6"/>
-<rect x="1139.3" y="531.4" width="6.4" height="96.6" rx="2" fill="#eb6834"/>
-<rect x="1147.8" y="495.1" width="6.4" height="132.9" rx="2" fill="#1baf7a"/>
+<rect x="1130.9" y="570.0" width="6.4" height="58.0" rx="2" fill="#2a78d6"/>
+<rect x="1139.3" y="535.2" width="6.4" height="92.8" rx="2" fill="#eb6834"/>
+<rect x="1147.8" y="500.4" width="6.4" height="127.6" rx="2" fill="#1baf7a"/>
 <text x="1167.5555555555557" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2024</text>
-<rect x="1156.7" y="495.1" width="6.4" height="132.9" rx="2" fill="#2a78d6"/>
-<rect x="1165.1" y="458.9" width="6.4" height="169.1" rx="2" fill="#eb6834"/>
-<rect x="1173.6" y="422.6" width="6.4" height="205.4" rx="2" fill="#1baf7a"/>
+<rect x="1156.7" y="500.4" width="6.4" height="127.6" rx="2" fill="#2a78d6"/>
+<rect x="1165.1" y="465.6" width="6.4" height="162.4" rx="2" fill="#eb6834"/>
+<rect x="1173.6" y="430.8" width="6.4" height="197.2" rx="2" fill="#1baf7a"/>
 <text x="1193.3333333333333" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2025</text>
-<rect x="1182.4" y="422.6" width="6.4" height="205.4" rx="2" fill="#2a78d6"/>
-<rect x="1190.9" y="567.6" width="6.4" height="60.4" rx="2" fill="#eb6834"/>
-<rect x="1199.3" y="531.4" width="6.4" height="96.6" rx="2" fill="#1baf7a"/>
+<rect x="1182.4" y="430.8" width="6.4" height="197.2" rx="2" fill="#2a78d6"/>
+<rect x="1190.9" y="570.0" width="6.4" height="58.0" rx="2" fill="#eb6834"/>
+<rect x="1199.3" y="535.2" width="6.4" height="92.8" rx="2" fill="#1baf7a"/>
 <text x="1219.111111111111" y="642" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" fill="#52514e" text-anchor="middle">2026</text>
-<rect x="1208.2" y="531.4" width="6.4" height="96.6" rx="2" fill="#2a78d6"/>
-<rect x="1216.7" y="495.1" width="6.4" height="132.9" rx="2" fill="#eb6834"/>
-<rect x="1225.1" y="458.9" width="6.4" height="169.1" rx="2" fill="#1baf7a"/>
-<circle cx="1242" cy="258" r="9" fill="#cde2fb"/>
-<text x="1242" y="262" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">13</text>
+<rect x="1208.2" y="535.2" width="6.4" height="92.8" rx="2" fill="#2a78d6"/>
+<rect x="1216.7" y="500.4" width="6.4" height="127.6" rx="2" fill="#eb6834"/>
+<rect x="1225.1" y="465.6" width="6.4" height="162.4" rx="2" fill="#1baf7a"/>
+<circle cx="1242" cy="270" r="9" fill="#cde2fb"/>
+<text x="1242" y="274" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#0b0b0b" text-anchor="middle">13</text>
 <text x="24" y="690" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">Adapted from Statistics Canada, tables 34-10-0292-01, 18-10-0205-01, 17-10-0005-01 and 17-10-0148-01. This does not constitute an endorsement by Statistics Canada of this product. Independent portfolio project; data as published, not seasonally adjusted unless</text>
 <text x="24" y="703" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#52514e" text-anchor="start">stated.</text>
 </svg>

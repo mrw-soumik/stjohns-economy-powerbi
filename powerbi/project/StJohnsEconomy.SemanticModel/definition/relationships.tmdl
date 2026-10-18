@@ -1,0 +1,15 @@
+relationship d041069d-678b-5d6e-8416-928377efa1a0
+	fromColumn: FactObservation.Date
+	toColumn: DimDate.Date
+
+relationship 347d2d38-1d2c-548c-aab5-5e0e1f737a1f
+	fromColumn: FactObservation.GeographyKey
+	toColumn: DimGeography.GeographyKey
+
+relationship 3635929e-f999-5bed-993f-6bc06fb1c027
+	fromColumn: FactObservation.IndicatorKey
+	toColumn: DimIndicator.IndicatorKey
+
+relationship f3900dac-db6e-5b9f-8b4f-6cd654f4f39f
+	fromColumn: FactObservation.SeriesKey
+	toColumn: DimSeries.SeriesKey

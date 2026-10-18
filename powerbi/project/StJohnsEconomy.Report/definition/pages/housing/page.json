@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "housing",
+  "displayName": "Housing and population",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "housing_f0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DimDate",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "datetime'2018-01-01T00:00:00'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_permits",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_permits_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_per_capita",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_per_capita_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_population",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_population_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_new_home_prices",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_kpi_new_home_prices_delta",
+      "type": "NoFilter"
+    },
+    {
+      "source": "housing_slicer_geography",
+      "target": "hs_chart_permits_by_type",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -24,3 +24,13 @@ This licence covers the code and documentation in this repository. The data in
 data/raw/ and data/processed/ comes from Statistics Canada and is used under the
 Statistics Canada Open Licence; see the "Data sources and licence" section of
 README.md for the required attribution.
+
+Third-party files included in this repository, under their own licences:
+
+- tools/pbip-validate/schemas/: JSON schemas from github.com/microsoft/json-schemas,
+  Copyright (c) Microsoft Corporation, MIT licence (see the LICENSE file in that folder).
+- powerbi/project/StJohnsEconomy.Report/StaticResources/SharedResources/BaseThemes/
+  Fluent2-CY26SU08.json: Power BI base theme from github.com/microsoft/fabric-toolbox,
+  Copyright (c) Microsoft Corporation, MIT licence.
+- docs/assets/vendor/d3-7.9.0.min.js: D3 7.9.0, Copyright 2010-2023 Mike Bostock,
+  ISC licence (see docs/assets/vendor/d3-LICENSE.txt).
