@@ -427,15 +427,6 @@
       "terminated": 0
      },
      {
-      "memberId": 3,
-      "memberNameEn": "Newfoundland and Labrador",
-      "classificationCode": "10",
-      "geoLevel": 2,
-      "vintage": 2016,
-      "memberUomCode": null,
-      "terminated": 0
-     },
-     {
       "memberId": 4,
       "memberNameEn": "St. John's, Newfoundland and Labrador",
       "classificationCode": "1",

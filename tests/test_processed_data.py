@@ -97,10 +97,13 @@ def test_every_catalogued_series_is_present(fact, catalogue):
 
 
 def test_documented_gaps_only(fact_labelled):
-    """St. John's has no published food or energy CPI; every other pair exists."""
+    """Only the documented gaps exist: St. John's has no published food or energy
+    CPI, and the N.L. New Housing Price Index is not loaded because it equals the
+    St. John's index (see docs/data-dictionary.md). Every other pair exists."""
     present = set(zip(fact_labelled["GeographyCode"], fact_labelled["IndicatorCode"]))
     indicators = set(fact_labelled["IndicatorCode"])
-    expected_missing = {("SJ", "CPI_FOOD"), ("SJ", "CPI_ENERGY")}
+    expected_missing = {("SJ", "CPI_FOOD"), ("SJ", "CPI_ENERGY"),
+                        ("NL", "NHPI_TOTAL"), ("NL", "NHPI_HOUSE"), ("NL", "NHPI_LAND")}
     for geo in ("SJ", "CA", "NL"):
         for ind in indicators:
             if (geo, ind) in expected_missing:
